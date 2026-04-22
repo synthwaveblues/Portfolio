@@ -4,20 +4,20 @@
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
     /* Colors */
-    --cherry:       #d42b4c;
-    --cherry-dim:   #d42b4c1a;
-    --cherry-glow:  #d42b4c40;
+    --cherry: #d42b4c;
+    --cherry-dim: #d42b4c1a;
+    --cherry-glow: #d42b4c40;
 
-    --bg:           #07070a;
-    --bg2:          #0e0e14;
-    --bg3:          #13131a;
+    --bg: #07070a;
+    --bg2: #0e0e14;
+    --bg3: #13131a;
 
-    --text:         #f0f0f5;
-    --text-dim:     #9090a0;
-    --text-muted:   #55555f;
+    --text: #f0f0f5;
+    --text-dim: #9090a0;
+    --text-muted: #55555f;
 
-    --border:       #1e1e2a;
-    --border2:      #2a2a3a;
+    --border: #1e1e2a;
+    --border2: #2a2a3a;
 
     /* Typography */
     --sans: 'Inter', system-ui, sans-serif;
@@ -25,7 +25,7 @@
 }
 
 /* ── Reset ────────────────────────────────────────────────────── */
-*, *::before, *::after {  /* Targets everything in project*/
+*, *::before, *::after { /* Targets everything in project*/
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -62,10 +62,24 @@ img {
 }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
-::-webkit-scrollbar       { width: 6px; } /* This targets the scrollbar itself */
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; } /* the part you actually click and drag */
-::-webkit-scrollbar-thumb:hover { background: var(--cherry); }
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* This targets the scrollbar itself */
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border2);
+    border-radius: 3px;
+}
+
+/* the part you actually click and drag */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cherry);
+}
 
 /* ── Shared section styles ────────────────────────────────────── */
 .section-label {
@@ -85,29 +99,37 @@ img {
     color: var(--text);
 }
 
-/* ── Nav ──────────────────────────────────────────────────────── */
+/* NAV */
 .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: fixed; /* wont be changed */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /* upper layer */
     display: flex;
-    align-items: center;
+    align-items: center; /* center vertically */
     justify-content: space-between;
     padding: 20px 48px;
-    z-index: 100;
-    background: linear-gradient(to bottom, var(--bg) 60%, transparent);
+    transition: background 0.3s, border-bottom 0.3s; /*smooth transition when nav-scrolled changes*/
+}
+
+.nav-scrolled {
+    background: rgba(7, 7, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 
 .nav-logo {
+    color: var(--cherry);
     font-family: var(--mono);
     font-size: 15px;
-    color: var(--cherry);
     font-weight: 600;
 }
 
 .nav-links {
     display: flex;
-    gap: 32px;
     align-items: center;
+    gap: 32px;
 }
 
 .nav-link {
@@ -122,13 +144,3 @@ img {
     color: var(--text);
 }
 
-/* ── Animations ───────────────────────────────────────────────── */
-@keyframes blink {  /* @keyframes are used for animations */
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-}
-
-@keyframes pulse {
-    0%, 100% { box-shadow: 0 0 6px var(--cherry); }
-    50%       { box-shadow: 0 0 12px var(--cherry), 0 0 24px rgba(212,43,76,0.4); }
-}
