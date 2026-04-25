@@ -110,13 +110,13 @@ img {
     align-items: center; /* center vertically */
     justify-content: space-between;
     padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
     transition: background 0.3s, border-bottom 0.3s; /*smooth transition when nav-scrolled changes*/
 }
 
 .nav-scrolled {
     background: rgba(7, 7, 10, 0.85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
 }
 
 .nav-logo {
@@ -144,3 +144,211 @@ img {
     color: var(--text);
 }
 
+/* HERO SECTION */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 120px 48px 80px;
+    position: relative;
+    gap: 40px; /*creates a consistent space between child items*/
+}
+
+.hero-dot-grid {
+    position: absolute;
+    inset: 0; /* shortcut for top, bottom, left, right */
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+.hero-glow {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(212, 43, 76, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    flex: 0 0 auto;
+    max-width: 560px;
+    z-index: 1;
+    transition: all 0.8s ease;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--cherry-dim);
+    border: 1px solid rgba(212, 43, 76, 0.3);
+    border-radius: 100px;
+    padding: 6px 14px;
+    margin-bottom: 32px;
+}
+
+.hero-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cherry);
+    box-shadow: 0 0 6px var(--cherry);
+    display: inline-block;
+}
+
+.hero-badge-text {
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    font-size: 11px;
+    font-family: var(--mono);
+}
+
+.hero-name {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+}
+
+.hero-name-first {
+    font-size: clamp(52px, 7vw, 90px);
+    font-weight: 700;
+    color: var(--text);
+}
+
+.hero-name-last {
+    font-size: clamp(52px, 7vw, 90px);
+    font-weight: 300;
+    color: var(--text-dim);
+}
+
+.hero-type-row {
+    font-family: var(--mono);
+    margin-bottom: 24px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 28px;
+}
+
+.hero-prompt {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.hero-cursor {
+    color: var(--cherry);
+    animation: blink 1s step-end infinite;
+}
+
+.hero-bio {
+    color: var(--text-dim);
+    margin-bottom: 36px;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.hero-button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-button-main {
+    background: var(--cherry);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 24px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(212, 43, 76, 0.4);
+}
+
+.hero-button-main:hover {
+    opacity: 0.85;
+}
+
+.hero-button-secondary {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 24px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+}
+
+.hero-button-secondary:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+}
+
+.hero-code-card {
+    flex: 0 0 auto;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    background: var(--bg2);
+    z-index: 1;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    max-width: 560px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+}
+
+.hero-code-dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.hero-code-pre {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-wrap;
+}
+
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+}
+
+.hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--border2), transparent);
+}
+
+
+/* ANIMATIONS*/
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}

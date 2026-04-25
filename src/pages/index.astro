@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/layout.astro';
+import Hero from '../components/sections/hero.tsx';
 ---
 
 <Layout title="Anton Shevchenko - Full-Stack Developer">
@@ -8,4 +9,5 @@ import Layout from '../layouts/layout.astro';
     padding: 2rem;
   ">
   </p>
+  <Hero client:load/>
 </Layout>

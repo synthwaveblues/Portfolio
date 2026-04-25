@@ -26,6 +26,14 @@ export default function Nav() {
         >
           github ↗
         </a>
+        <a
+          className='nav-link'
+          href='https://www.linkedin.com/in/anton-shevchenko-8a4827357/'
+          target='_blank' // open the link in a new tab or window instead of navigating away from your website
+          rel="noreferrer" // prevent leaking referrer information to the linked site
+        >
+          linkedin ↗
+        </a>
       </div>
     </nav>
   )
