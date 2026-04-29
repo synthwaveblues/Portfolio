@@ -13,7 +13,12 @@ export default function Nav() {
 
   return (
     <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
-      <span className="nav-logo">{'<AS/>'}</span>
+      <span
+        className="nav-logo"
+        onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+      >
+        {'<synthwaveblues/>'}
+      </span>
       <div className="nav-links">
         {NAV_LINKS.map(s => (
           <a key={s} className="nav-link" href={`#${s}`}>{s}</a>

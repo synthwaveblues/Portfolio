@@ -22,16 +22,16 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
   const isVideo = project.videoUrl && !isYoutube;
 
   return (
-    <div className="video-panel">
-      <div className="video-panel-header">
-        <div className="video-panel-title">
-          <span className="video-panel-dot"/>
+    <div className="demo-panel">
+      <div className="demo-panel-header">
+        <div className="demo-panel-title">
+          <span className="demo-panel-dot"/>
           <span>LIVE DEMO - {project.name}</span>
         </div>
-        <span className="video-panel-close" onClick={onClose}>×</span>
+        <span className="demo-panel-close" onClick={onClose}>×</span>
       </div>
-      <div className="video-panel-body">
-        <div className="video-panel-demo">
+      <div className="demo-panel-body">
+        <div className="demo-video-wrap">
           {
             isYoutube ? (
               <iframe
@@ -57,7 +57,7 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
               </div>
             )}
         </div>
-        <p className="video-panel-desc">{project.videodesc}</p>
+        <p className="demo-desc">{project.videodesc}</p>
       </div>
     </div>
   )
@@ -106,10 +106,13 @@ export default function Projects() {
     const next = id === openId ? null : id;
     setOpenId(next);
     if (next && demoRef.current) {
-      setTimeout(() => {
-        const top = demoRef.current!.getBoundingClientRect().top + window.scrollY - 80;
+      const el = demoRef.current;
+      const onEnd = () => {
+        el.removeEventListener('transitionend', onEnd);
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
         window.scrollTo({top, behavior: 'smooth'});
-      }, 100);
+      };
+      el.addEventListener('transitionend', onEnd);
     }
   }
 
@@ -117,7 +120,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="projects-section">
-      <div className="projects-body">
+      <div className="container">
         <div className="section-label">FEATURED WORK</div>
         <div className="section-title">Projects</div>
         <div className="projects-grid">
@@ -131,7 +134,7 @@ export default function Projects() {
           ))}
         </div>
         <div
-          className={`"demo-panel-wrap ${openId ? "demo-panel-wrap-open" : ""}`}
+          className={`demo-panel-wrap ${openId ? "demo-panel-wrap-open" : ""}`}
           ref={demoRef}
         >
           {openProject && (
