@@ -17,7 +17,7 @@ export default function Nav() {
         className="nav-logo"
         onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
       >
-        {'<synthwaveblues/>'}
+        {'<AS/>'}
       </span>
       <div className="nav-links">
         {NAV_LINKS.map(s => (

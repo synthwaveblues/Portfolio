@@ -67,12 +67,27 @@ img {
 
 /* SHARED */
 .section-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 6px;
+}
+
+.section-label-slash {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cherry);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+.section-label-text {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--cherry);
     letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .section-title {
@@ -84,7 +99,7 @@ img {
 }
 
 .container {
-    max-width: 1500px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -621,6 +636,95 @@ img {
     font-size: 13px;
     color: var(--text-dim);
     line-height: 1.7;
+}
+
+/* TECH STACK */
+.techstack-section {
+    padding: 120px 40px;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    max-width: 300px;
+}
+
+.category-card-header {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-card-icon {
+    font-size: 16px;
+    font-family: var(--mono);
+    width: 24px;
+    color: var(--cherry);
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.category-card-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.category-card-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.skill-name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline
+}
+
+.skill-name {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.skill-level {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    transition: opacity 0.3s;
+}
+
+.skill-bar-bg {
+    background: var(--border);
+    height: 3px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: var(--cherry);
+    background: linear-gradient(90deg, var(--cherry), rgba(212, 43, 76, 0.5));
+    width: 0;
+    border-radius: 2px;
 }
 
 /* ANIMATIONS*/

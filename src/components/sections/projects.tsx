@@ -121,7 +121,10 @@ export default function Projects() {
   return (
     <section id="projects" className="projects-section">
       <div className="container">
-        <div className="section-label">FEATURED WORK</div>
+        <div className="section-label">
+          <span className="section-label-slash">//</span>
+          <span className="section-label-text">FEATURED WORK</span>
+        </div>
         <div className="section-title">Projects</div>
         <div className="projects-grid">
           {PROJECTS.map(p => (

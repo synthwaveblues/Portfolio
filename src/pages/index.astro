@@ -2,6 +2,7 @@
 import Layout from '../layouts/layout.astro';
 import Hero from '../components/sections/hero.tsx';
 import Projects from '../components/sections/projects.tsx';
+import TechStack from '../components/sections/techStack';
 ---
 
 <Layout title="Anton Shevchenko - Full-Stack Developer">
@@ -12,4 +13,5 @@ import Projects from '../components/sections/projects.tsx';
   </p>
   <Hero client:load/>
   <Projects client:load/>
+  <TechStack client:load/>
 </Layout>
