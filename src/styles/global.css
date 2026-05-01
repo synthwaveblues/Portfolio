@@ -721,10 +721,121 @@ img {
 
 .skill-bar-fill {
     height: 100%;
-    background: var(--cherry);
     background: linear-gradient(90deg, var(--cherry), rgba(212, 43, 76, 0.5));
     width: 0;
     border-radius: 2px;
+}
+
+.timeline-section {
+    padding: 120px 40px;
+}
+
+.timeline-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+}
+
+.timeline-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-col-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 16px;
+}
+
+.timeline-col-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+.timeline-col-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--cherry);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+    box-shadow: 0 0 8px rgba(212, 43, 76, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+
+}
+
+.timeline-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cherry);
+}
+
+.timeline-location {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.timeline-company {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 2px;
+}
+
+.timeline-role {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.timeline-points {
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.timeline-point {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+.timeline-detail {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
 }
 
 /* ANIMATIONS*/
