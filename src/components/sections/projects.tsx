@@ -102,10 +102,23 @@ export default function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
   const demoRef = useRef<HTMLDivElement>(null);
 
+  const scrollToProjects = () => {
+    const section = document.getElementById('projects');
+    if (section) {
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({top, behavior: 'smooth'});
+    }
+  };
+
+  const handleClose = () => {
+    setOpenId(null);
+    scrollToProjects();
+  };
+
   const toggle = (id: string) => {
     const next = id === openId ? null : id;
     setOpenId(next);
-    if (next && demoRef.current) {
+    if (next && !openId && demoRef.current) {
       const el = demoRef.current;
       const onEnd = () => {
         el.removeEventListener('transitionend', onEnd);
@@ -113,6 +126,8 @@ export default function Projects() {
         window.scrollTo({top, behavior: 'smooth'});
       };
       el.addEventListener('transitionend', onEnd);
+    } else if (!next) {
+      scrollToProjects();
     }
   }
 
@@ -143,9 +158,16 @@ export default function Projects() {
           {openProject && (
             <VideoPanel
               project={openProject}
-              onClose={() => setOpenId(null)}
+              onClose={handleClose}
             />
           )}
+        </div>
+        <div className="projects-footer">
+          <span className="projects-footer-text">..and even more on my </span>
+          <a className="projects-footer-link" href="https://github.com/synthwaveblues" target="_blank"
+             rel="noreferrer">GitHub</a>
+          <span className="projects-footer-text">:)</span>
+
         </div>
       </div>
     </section>

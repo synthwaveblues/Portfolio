@@ -399,6 +399,9 @@ img {
 
 .project-card-inner {
     padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .project-num {
@@ -476,7 +479,8 @@ img {
 .project-footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
     align-items: center;
 }
 
@@ -636,6 +640,33 @@ img {
     font-size: 13px;
     color: var(--text-dim);
     line-height: 1.7;
+}
+
+.projects-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+.projects-footer-text {
+    color: var(--text-muted);
+}
+
+.projects-footer-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    position: relative;
+    padding: 2px 0;
+    transition: color 0.3s ease;
+}
+
+.projects-footer-link:hover {
+    color: var(--text);
 }
 
 /* TECH STACK */
