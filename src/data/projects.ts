@@ -9,6 +9,7 @@ export interface Project {
   year: string;
   github: string;
   videoUrl: string;
+  image?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -23,6 +24,7 @@ export const PROJECTS: Project[] = [
     year: '2025–2026',
     github: 'https://github.com/StudentHelperCom/student-helper-backend',
     videoUrl: '',
+    image: 'student_helper.png',
   },
   {
     id: 'movie-checklist',
@@ -35,6 +37,7 @@ export const PROJECTS: Project[] = [
     year: '2025-2026',
     github: 'https://github.com/MiOnMu/MovieChecklist',
     videoUrl: '',
+    image: 'movie_checklist.png',
   },
   {
     id: 'natours',
@@ -47,17 +50,6 @@ export const PROJECTS: Project[] = [
     year: '2026',
     github: 'https://github.com/synthwaveblues/Natours',
     videoUrl: '',
+    image: 'natours.png',
   }
 ]
-
-export const PROJECT_ICONS: Record<string, string> = {
-  'student-helper': '🎓',
-  'natours': '🍃',
-  'movie-checklist': '🎬',
-};
-
-export const PROJECT_LABELS: Record<string, string> = {
-  'student-helper': '[ AI Platform ]',
-  'natours': '[ Tour Booking App ]',
-  'movie-checklist': '[ Android App ]',
-};

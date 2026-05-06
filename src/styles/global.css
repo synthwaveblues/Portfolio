@@ -11,13 +11,15 @@
     --bg: #07070a;
     --bg2: #0e0e14;
     --bg3: #13131a;
+    --card-bg: rgba(212, 43, 76, 0.05);
+    --card-header-bg: rgba(212, 43, 76, 0.09);
 
     --text: #f0f0f5;
     --text-dim: #9090a0;
     --text-muted: #55555f;
 
-    --border: #1e1e2a;
-    --border2: #2a2a3a;
+    --border: rgba(212, 43, 76, 0.18);
+    --border2: rgba(212, 43, 76, 0.32);
 
     /* Typography */
     --sans: 'Inter', system-ui, sans-serif;
@@ -150,6 +152,7 @@ img {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    letter-spacing: 0.1em;
 }
 
 .nav-links {
@@ -324,7 +327,7 @@ img {
 .hero-code-card {
     flex: 0 0 auto;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    background: var(--bg2);
+    background: var(--card-bg);
     z-index: 1;
     border: 1px solid var(--border);
     padding: 20px 24px;
@@ -381,7 +384,7 @@ img {
 
 .project-card {
     cursor: pointer;
-    background: var(--bg2);
+    background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 12px;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -413,28 +416,30 @@ img {
 }
 
 .project-thumbnail {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     margin-bottom: 20px;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--bg);
     width: 100%;
     aspect-ratio: 16/9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.project-thumbnail-label {
+.project-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-thumbnail-placeholder {
     font-family: var(--mono);
+    font-size: 11px;
     color: var(--text-muted);
-    font-size: 12px;
-    text-align: center;
-}
-
-.project-thumbnail-icon {
-    font-size: 28px;
-    margin-top: 8px;
+    letter-spacing: 0.08em;
 }
 
 .project-name {
@@ -520,7 +525,7 @@ img {
 }
 
 .demo-panel {
-    background: var(--bg2);
+    background: var(--card-bg);
     border: 1px solid var(--cherry);
     border-radius: 12px;
     box-shadow: 0 0 40px rgba(212, 43, 76, 0.1);
@@ -533,7 +538,7 @@ img {
     justify-content: space-between;
     padding: 14px 24px;
     border-bottom: 1px solid var(--border);
-    background: var(--bg3);
+    background: var(--card-header-bg);
 }
 
 .demo-panel-title {
@@ -543,14 +548,6 @@ img {
     font-size: 12px;
     color: var(--text-dim);
     gap: 10px;
-}
-
-.demo-panel-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--cherry);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--cherry);
 }
 
 .demo-panel-close {
@@ -612,7 +609,7 @@ img {
 .demo-placeholder-icon {
     width: 48px;
     height: 48px;
-    border: 2px solid var(--text-muted);
+    border: 2px solid var(--border2);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -681,7 +678,7 @@ img {
 }
 
 .category-card {
-    background: var(--bg2);
+    background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px 20px;

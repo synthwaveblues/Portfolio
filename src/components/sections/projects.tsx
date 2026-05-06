@@ -1,5 +1,5 @@
 import {useRef, useState} from "react";
-import {PROJECTS, PROJECT_LABELS, PROJECT_ICONS} from "../../data/projects.ts";
+import {PROJECTS} from "../../data/projects.ts";
 import type {Project} from "../../data/projects.ts";
 
 // PROPS
@@ -25,7 +25,6 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
     <div className="demo-panel">
       <div className="demo-panel-header">
         <div className="demo-panel-title">
-          <span className="demo-panel-dot"/>
           <span>LIVE DEMO - {project.name}</span>
         </div>
         <span className="demo-panel-close" onClick={onClose}>×</span>
@@ -72,12 +71,10 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
       <div className="project-card-inner">
         <div className="project-num">{project.num}</div>
         <div className="project-thumbnail">
-          <div className="project-thumbnail-label">
-            {PROJECT_LABELS[project.id]}
-          </div>
-          <div className="project-thumbnail-icon">
-            {PROJECT_ICONS[project.id]}
-          </div>
+          {project.image
+            ? <img src={project.image} alt={project.name} className="project-thumbnail-img"/>
+            : <span className="project-thumbnail-placeholder">no preview</span>
+          }
         </div>
         <div className="project-name">{project.name}</div>
         <div className="project-tagline">{project.tagline}</div>
