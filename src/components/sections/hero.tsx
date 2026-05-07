@@ -64,7 +64,7 @@ export default function Hero() {
 
         <div className="hero-bio">
           Building scalable microservices, AI-powered platforms,<br/>
-          clean APIs and Fullstack solutions. <br/>MSc ICT · Poznan University of Technology.
+          clean APIs and Fullstack solutions. <br/>MSc ICT, Poznan University of Technology.
         </div>
 
         <div className="hero-button">
@@ -77,7 +77,7 @@ export default function Hero() {
           <a
             className='hero-button-secondary'
             href='https://github.com/synthwaveblues'
-            target='_blank' // open the link in a new tab or window instead of navigating away from your website
+            target='_blank'
             rel="noreferrer"
           >
             GitHub ↗

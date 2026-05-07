@@ -45,12 +45,11 @@ export const GET: APIRoute = async () => {
   try {
     const accessToken = await getAccessToken();
 
-    // fetch all three in parallel
     const [currentRes, recentRes, queueRes] = await Promise.all([
       fetch('https://api.spotify.com/v1/me/player/currently-playing', {
         headers: {Authorization: `Bearer ${accessToken}`},
       }),
-      fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
+      fetch('https://api.spotify.com/v1/me/player/recently-played?limit=2', {
         headers: {Authorization: `Bearer ${accessToken}`},
       }),
       fetch('https://api.spotify.com/v1/me/player/queue', {
@@ -66,11 +65,12 @@ export const GET: APIRoute = async () => {
       if (next) nextTrack = formatTrack(next);
     }
 
-    // previous track from recently played
+    // prev track from recently played
     let prevTrack = null;
     if (recentRes.status === 200) {
       const recentData = await recentRes.json();
-      const prev = recentData?.items?.[0]?.track;
+      // index 0 is current if playing, index 1 is previous
+      const prev = recentData?.items?.[1]?.track ?? recentData?.items?.[0]?.track;
       if (prev) prevTrack = formatTrack(prev);
     }
 
@@ -83,7 +83,6 @@ export const GET: APIRoute = async () => {
             isPlaying: data.is_playing,
             ...formatTrack(data.item),
             progress: data.progress_ms,
-            prevTrack,
             nextTrack,
           }),
           {status: 200, headers: {'Content-Type': 'application/json'}}
@@ -91,24 +90,26 @@ export const GET: APIRoute = async () => {
       }
     }
 
-    if (queueRes.status === 200) {
-      const queueData = await queueRes.json();
-      console.log('QUEUE STATUS:', queueRes.status);
-      console.log('QUEUE DATA:', JSON.stringify(queueData, null, 2));
-      const next = queueData?.queue?.[0];
-      if (next) nextTrack = formatTrack(next);
+    // fallback — nothing playing
+    if (recentRes.status === 200) {
+      const recentData = await recentRes.json();
+      const last = recentData?.items?.[0]?.track;
+      if (last) {
+        return new Response(
+          JSON.stringify({
+            isPlaying: false,
+            ...formatTrack(last),
+            progress: 0,
+            nextTrack: null,
+          }),
+          {status: 200, headers: {'Content-Type': 'application/json'}}
+        );
+      }
     }
 
-    // fallback — not playing
     return new Response(
-      JSON.stringify({
-        isPlaying: false,
-        prevTrack,
-        nextTrack,
-        ...(prevTrack ?? {}),
-        progress: 0,
-      }),
-      {status: 200, headers: {'Content-Type': 'application/json'}}
+      JSON.stringify({isPlaying: false, prevTrack: null, nextTrack: null}),
+      {status: 200}
     );
 
   } catch (err) {

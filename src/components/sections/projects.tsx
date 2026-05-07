@@ -97,6 +97,7 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
 
 export default function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
+  const [displayId, setDisplayId] = useState<string | null>(null);
   const demoRef = useRef<HTMLDivElement>(null);
 
   const scrollToProjects = () => {
@@ -107,28 +108,43 @@ export default function Projects() {
     }
   };
 
-  const handleClose = () => {
+  const closePanel = () => {
     setOpenId(null);
     scrollToProjects();
+    const el = demoRef.current;
+    if (el) {
+      const onEnd = (e: TransitionEvent) => {
+        if (e.propertyName !== 'max-height') return;
+        el.removeEventListener('transitionend', onEnd);
+        setDisplayId(null);
+      };
+      el.addEventListener('transitionend', onEnd);
+    } else {
+      setDisplayId(null);
+    }
   };
 
   const toggle = (id: string) => {
-    const next = id === openId ? null : id;
-    setOpenId(next);
-    if (next && !openId && demoRef.current) {
-      const el = demoRef.current;
-      const onEnd = () => {
-        el.removeEventListener('transitionend', onEnd);
-        const top = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({top, behavior: 'smooth'});
-      };
-      el.addEventListener('transitionend', onEnd);
-    } else if (!next) {
-      scrollToProjects();
+    if (id === openId) {
+      closePanel();
+    } else {
+      const wasOpen = !!openId;
+      setOpenId(id);
+      setDisplayId(id);
+      if (!wasOpen && demoRef.current) {
+        const el = demoRef.current;
+        const onEnd = (e: TransitionEvent) => {
+          if (e.propertyName !== 'max-height') return;
+          el.removeEventListener('transitionend', onEnd);
+          const top = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({top, behavior: 'smooth'});
+        };
+        el.addEventListener('transitionend', onEnd);
+      }
     }
-  }
+  };
 
-  const openProject = PROJECTS.find(p => p.id === openId);
+  const displayProject = PROJECTS.find(p => p.id === displayId);
 
   return (
     <section id="projects" className="projects-section">
@@ -152,10 +168,10 @@ export default function Projects() {
           className={`demo-panel-wrap ${openId ? "demo-panel-wrap-open" : ""}`}
           ref={demoRef}
         >
-          {openProject && (
+          {displayProject && (
             <VideoPanel
-              project={openProject}
-              onClose={handleClose}
+              project={displayProject}
+              onClose={closePanel}
             />
           )}
         </div>
