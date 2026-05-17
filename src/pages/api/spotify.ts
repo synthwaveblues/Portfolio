@@ -24,8 +24,8 @@ async function getAccessToken(): Promise<string> {
 
 interface SpotifyTrack {
   name: string;
-  artists: { name: string }[];
-  album: { name: string; images: { url: string }[] };
+  artists: { name: string; external_urls: { spotify: string } }[];
+  album: { name: string; images: { url: string }[]; external_urls: { spotify: string } };
   external_urls: { spotify: string };
   duration_ms: number;
 }
@@ -34,7 +34,9 @@ function formatTrack(track: SpotifyTrack) {
   return {
     title: track.name,
     artist: track.artists.map(a => a.name).join(', '),
+    artistUrl: track.artists[0]?.external_urls.spotify ?? null,
     album: track.album.name,
+    albumUrl: track.album.external_urls.spotify ?? null,
     albumArt: track.album.images[0]?.url ?? null,
     songUrl: track.external_urls.spotify,
     duration: track.duration_ms,

@@ -46,11 +46,6 @@ export default function Hero() {
              transform: visible ? 'none' : 'translateY(20px)',
            }}
       >
-        <div className="hero-badge">
-          <span className="hero-badge-dot"/>
-          <span className="hero-badge-text">AVAILABLE FOR OPPORTUNITIES</span>
-        </div>
-
         <div className="hero-name">
           <span className="hero-name-first">Anton</span>
           <span className="hero-name-last">Shevchenko</span>
@@ -64,7 +59,7 @@ export default function Hero() {
 
         <div className="hero-bio">
           Building scalable microservices, AI-powered platforms,<br/>
-          clean APIs and Fullstack solutions. <br/>MSc ICT, Poznan University of Technology.
+          clean APIs and Fullstack solutions.
         </div>
 
         <div className="hero-button">

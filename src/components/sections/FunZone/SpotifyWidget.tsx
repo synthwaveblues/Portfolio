@@ -3,7 +3,9 @@ import {useEffect, useState} from "react";
 interface TrackInfo {
   title: string;
   artist: string;
+  artistUrl: string | null;
   album: string;
+  albumUrl: string | null;
   albumArt: string | null;
   songUrl: string;
   duration: number;
@@ -76,85 +78,81 @@ export default function SpotifyWidget() {
   }
 
   return (
+    <>
+    <div className="fz-card-label">{data.isPlaying ? 'Now Playing' : 'Played Recently'}</div>
     <div className="spotify-card">
-      {/* CURRENT TRACK*/}
-      <div className="spotify-main">
-        <div className="spotify-album-art">
+      <div className="spotify-top">
+        <a href={data.songUrl} target="_blank" rel="noopener noreferrer" className="spotify-album-art">
           {data.albumArt
-            ? <img src={data.albumArt} alt="album art"/>
+            ? <img src={data.albumArt} alt="album art" className="spotify-album-img"/>
             : <div className="spotify-album-note">♪</div>
           }
-        </div>
+        </a>
 
         <div className="spotify-info">
-          <div className="spotify-status">
-            <span
-              className="spotify-status-dot"
-              style={{animationPlayState: data.isPlaying ? 'running' : 'paused'}}
+          <div>
+            <a
+              href={data.songUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="spotify-title"
+            >
+              {data.title}
+            </a>
+          </div>
+
+          <div className="spotify-artist">
+            <a href={data.artistUrl ?? undefined} target="_blank" rel="noreferrer"
+               className="spotify-meta-link">{data.artist}</a>
+            {' · '}
+            <a href={data.albumUrl ?? undefined} target="_blank" rel="noreferrer"
+               className="spotify-meta-link">{data.album}</a>
+          </div>
+
+          <div className="spotify-progress-bar">
+            <div
+              className="spotify-progress-fill"
+              style={{width: `${progressPct}%`}}
             />
-            <span>{data.isPlaying ? 'NOW PLAYING' : 'PLAYED RECENTLY'}</span>
+          </div>
+          <div className="spotify-time">
+            <span>{formatMs(progress)}</span>
+            <span>{formatMs(data.duration)}</span>
           </div>
         </div>
-
-        <a
-          href={data.songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="spotify-title"
-        >
-          {data.title}
-        </a>
-
-        <div className="spotify-artist">
-          {data.artist} - {data.album}
-        </div>
-
-        {data.isPlaying && (
-          <>
-            <div className="spotify-progress-bar">
-              <div
-                className="spotify-progress-fill"
-                style={{width: `${progressPct}%`}}
-              />
-            </div>
-            <div className="spotify-time">
-              <span>{formatMs(progress)}</span>
-              <span>{formatMs(data.duration)}</span>
-            </div>
-          </>
-        )}
-
-        <a
-          href={data.songUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="spotify-open-btn"
-        >
-          open in spotify ↗
-        </a>
       </div>
 
-      {data.isPlaying && data.nextTrack && (
-        <a
-          href={data.nextTrack.songUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="spotify-adjacent spotify-next"
-        >
-          <div className="spotify-adjacent-label">next →</div>
-          <div className="spotify-adjacent-art">
-            {data.nextTrack.albumArt
-              ? <img src={data.nextTrack.albumArt} alt={data.nextTrack.album}/>
-              : <span>♪</span>
-            }
+      {data.nextTrack && (
+        <div className="spotify-adjacent">
+          <div className="spotify-adjacent-label">next in queue</div>
+          <div className="spotify-adjacent-row">
+            <a href={data.nextTrack.songUrl} target="_blank" rel="noreferrer" className="spotify-adjacent-art">
+              {data.nextTrack.albumArt
+                ? <img src={data.nextTrack.albumArt} alt={data.nextTrack.album}/>
+                : <span>♪</span>
+              }
+            </a>
+            <div className="spotify-adjacent-info">
+              <a
+                href={data.nextTrack.songUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="spotify-adjacent-title"
+              >{data.nextTrack.title}</a>
+              <div className="spotify-adjacent-artist">
+                <a href={data.nextTrack.artistUrl ?? undefined} target="_blank" rel="noreferrer"
+                   className="spotify-meta-link">{data.nextTrack.artist}</a>
+                {' · '}
+                <a href={data.nextTrack.albumUrl ?? undefined} target="_blank" rel="noreferrer"
+                   className="spotify-meta-link">{data.nextTrack.album}</a>
+              </div>
+            </div>
           </div>
-          <div className="spotify-adjacent-info">
-            <div className="spotify-adjacent-title">{data.nextTrack.title}</div>
-            <div className="spotify-adjacent-artist">{data.nextTrack.artist}</div>
-          </div>
-        </a>
+        </div>
       )}
 
+      <div className="spotify-branding">spotify api · 2026</div>
     </div>
+    </>
   )
 }
