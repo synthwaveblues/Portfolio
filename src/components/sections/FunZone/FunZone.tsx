@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import SpotifyWidget from './SpotifyWidget';
 import SkillRadar from './SkillRadar';
 import TypingGame from './TypingGame';
+import Terminal from './Terminal';
+import SnakeGame from './SnakeGame';
 
 export default function FunZone() {
+  const [openGame, setOpenGame] = useState<'terminal' | 'snake' | null>(null);
+
   return (
     <section id="fun" className="fz-section">
       <div className="fz-inner">
@@ -28,19 +33,22 @@ export default function FunZone() {
           </div>
 
           <div className="fz-egg-row">
-            <div className="fz-egg-card">
-              <span className="fz-egg-icon">$_</span>
+            <div className="fz-egg-card" onClick={() => setOpenGame('terminal')}>
+              <span className="fz-egg-icon">&gt;_</span>
               <div className="fz-egg-title">Terminal</div>
-              <div className="fz-egg-sub">coming soon</div>
+              <div className="fz-egg-sub">click to open</div>
             </div>
-            <div className="fz-egg-card">
-              <span style={{fontSize: 28}}>🐍</span>
+            <div className="fz-egg-card" onClick={() => setOpenGame('snake')}>
+              <span className="fz-egg-icon">~&gt;</span>
               <div className="fz-egg-title">Snake</div>
-              <div className="fz-egg-sub">coming soon</div>
+              <div className="fz-egg-sub">click to open</div>
             </div>
           </div>
         </div>
       </div>
+
+      {openGame === 'terminal' && <Terminal onClose={() => setOpenGame(null)} />}
+      {openGame === 'snake' && <SnakeGame onClose={() => setOpenGame(null)} />}
     </section>
   );
 }
