@@ -1,0 +1,108 @@
+.contact-section {
+    padding: 100px 48px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.contact-rows {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 32px;
+}
+
+.contact-row:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.contact-row-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cherry);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.contact-row-value {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+}
+
+.contact-row-link {
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.contact-row-link:hover {
+    color: var(--cherry);
+}
+
+.contact-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 28px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.contact-art {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--cherry);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    white-space: pre;
+}
+
+.contact-blurb {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.9;
+    text-align: right;
+}
+
+.contact-footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 0;
+    margin-top: 80px;
+    border-top: 1px solid var(--border);
+}
+
+.contact-footer-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--cherry);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-right: auto;
+}
+
+.contact-footer-built,
+.contact-footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}

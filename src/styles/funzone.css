@@ -1,0 +1,493 @@
+/* ── Fun Zone ─────────────────────────────────────────────────── */
+.fz-section {
+    padding: 100px 48px;
+    border-top: 1px solid var(--border);
+}
+
+.fz-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.fz-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(135deg, rgba(232, 80, 130, 0.025) 0%, transparent 40%);
+    display: flex;
+    flex-direction: column;
+}
+
+.fz-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cherry);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.fz-egg-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 20px;
+}
+
+.fz-egg-card {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(135deg, rgba(232, 80, 130, 0.025) 0%, transparent 40%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+    user-select: none;
+}
+
+.fz-egg-card:hover {
+    border-color: var(--border2);
+}
+
+.fz-egg-icon {
+    font-family: var(--mono);
+    font-size: 24px;
+    color: var(--cherry);
+    letter-spacing: 0.05em;
+}
+
+.fz-egg-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cherry);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.fz-egg-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ── Spotify Widget ───────────────────────────────────────────── */
+.spotify-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    flex: 1;
+}
+
+.spotify-branding {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.spotify-top {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.spotify-album-art {
+    width: 110px;
+    height: 110px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.spotify-album-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-album-note {
+    font-size: 28px;
+    opacity: 0.3;
+}
+
+.spotify-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.spotify-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 20px 0;
+}
+
+.spotify-loading-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1db954;
+    animation: pulse 1.5s infinite;
+}
+
+.spotify-offline {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.spotify-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.spotify-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #1db954;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.spotify-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1db954;
+    display: inline-block;
+    flex-shrink: 0;
+    animation: pulse 1.5s infinite;
+}
+
+.spotify-title {
+    display: inline;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 3px;
+    color: var(--text);
+    transition: color 0.2s;
+}
+
+.spotify-title:hover {
+    color: #1db954;
+}
+
+.spotify-artist {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-meta-link {
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.spotify-meta-link:hover {
+    color: var(--text);
+}
+
+.spotify-progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.spotify-progress-fill {
+    height: 100%;
+    background: #1db954;
+    border-radius: 2px;
+    transition: width 1s linear;
+}
+
+.spotify-time {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.spotify-open-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #1db954;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+}
+
+.spotify-open-btn:hover {
+    opacity: 0.7;
+}
+
+.spotify-adjacent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    margin-top: 12px;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+}
+
+.spotify-adjacent-title:hover {
+    color: #1db954;
+}
+
+.spotify-adjacent-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.spotify-adjacent-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spotify-adjacent-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.spotify-adjacent-art {
+    width: 66px;
+    height: 66px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.spotify-adjacent-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-adjacent-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.2s;
+    display: inline;
+}
+
+.spotify-adjacent-artist {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Skill Radar ──────────────────────────────────────────────── */
+.radar-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}
+
+/* ── Typing Game ──────────────────────────────────────────────── */
+.typing-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.typing-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cherry);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+}
+
+.typing-idle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.typing-idle-text {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.typing-start-btn {
+    background: var(--cherry);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(212, 43, 76, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.typing-start-btn:hover {
+    opacity: 0.85;
+}
+
+.typing-sentence {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    word-break: break-all;
+    letter-spacing: 0.03em;
+}
+
+.typing-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.typing-input:focus {
+    border-color: var(--cherry);
+}
+
+.typing-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    justify-content: center;
+}
+
+.typing-stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.typing-stat-value {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.typing-active {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.typing-go-label {
+    font-family: var(--mono);
+    font-size: 20px;
+    color: var(--text);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-weight: 1000;
+}
+
+.typing-done {
+    margin-top: 12px;
+    min-height: 36px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing-done-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #5ecf8a;
+}
+
+.typing-next-btn {
+    background: var(--cherry);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+}
+
+.typing-next-btn:hover {
+    opacity: 0.85;
+}

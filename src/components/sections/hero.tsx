@@ -71,19 +71,10 @@ export default function Hero() {
           </a>
           <a
             className='hero-button-secondary'
-            href='https://github.com/synthwaveblues'
-            target='_blank'
-            rel="noreferrer"
+            href='/cv.pdf'
+            download
           >
-            GitHub ↗
-          </a>
-          <a
-            className='hero-button-secondary'
-            href='https://www.linkedin.com/in/anton-shevchenko-8a4827357/'
-            target='_blank' // open the link in a new tab or window instead of navigating away from your website
-            rel="noreferrer"
-          >
-            LinkedIn ↗
+            Download CV ↓
           </a>
         </div>
       </div>
