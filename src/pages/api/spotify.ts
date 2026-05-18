@@ -67,13 +67,10 @@ export const GET: APIRoute = async () => {
       if (next) nextTrack = formatTrack(next);
     }
 
-    // prev track from recently played
-    let prevTrack = null;
+    // parse recent once — body stream can only be read once
+    let recentData: any = null;
     if (recentRes.status === 200) {
-      const recentData = await recentRes.json();
-      // index 0 is current if playing, index 1 is previous
-      const prev = recentData?.items?.[1]?.track ?? recentData?.items?.[0]?.track;
-      if (prev) prevTrack = formatTrack(prev);
+      recentData = await recentRes.json();
     }
 
     // currently playing
@@ -93,8 +90,7 @@ export const GET: APIRoute = async () => {
     }
 
     // fallback — nothing playing
-    if (recentRes.status === 200) {
-      const recentData = await recentRes.json();
+    if (recentData) {
       const last = recentData?.items?.[0]?.track;
       if (last) {
         return new Response(
