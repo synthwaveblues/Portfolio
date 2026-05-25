@@ -55,7 +55,7 @@
 }
 
 .hero-type-row {
-    font-family: var(--mono);
+    font-family: var(--display);
     margin-bottom: 24px;
     font-size: 18px;
     display: flex;
@@ -90,7 +90,7 @@
 .hero-button-main {
     background: var(--cherry);
     color: var(--text);
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 13px;
     padding: 12px 24px;
     border: 1px solid var(--border2);
@@ -106,7 +106,7 @@
 }
 
 .hero-button-secondary {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 13px;
     padding: 12px 24px;
     border: 1px solid var(--border2);
@@ -156,7 +156,7 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--text-muted);
     letter-spacing: 0.1em;

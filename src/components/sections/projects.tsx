@@ -69,7 +69,7 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
       onClick={onToggle}
     >
       <div className="project-card-inner">
-        <div className="project-num">{project.num}</div>
+
         <div className="project-thumbnail">
           {project.image
             ? <img src={project.image} alt={project.name} className="project-thumbnail-img"/>

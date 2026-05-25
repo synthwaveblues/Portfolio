@@ -28,7 +28,7 @@
 }
 
 .fz-card-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--cherry);
     letter-spacing: 0.18em;
@@ -66,14 +66,14 @@
 }
 
 .fz-egg-icon {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 24px;
     color: var(--cherry);
     letter-spacing: 0.05em;
 }
 
 .fz-egg-title {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--cherry);
     letter-spacing: 0.18em;
@@ -82,7 +82,7 @@
 }
 
 .fz-egg-sub {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--text-muted);
     margin-top: 4px;
@@ -98,7 +98,7 @@
 }
 
 .spotify-branding {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 9px;
     color: var(--text-muted);
     letter-spacing: 0.08em;
@@ -150,7 +150,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     color: var(--text-muted);
     padding: 20px 0;
@@ -165,7 +165,7 @@
 }
 
 .spotify-offline {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     color: var(--text-muted);
     padding: 20px 0;
@@ -184,7 +184,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: #1db954;
     letter-spacing: 0.1em;
@@ -250,14 +250,14 @@
 .spotify-time {
     display: flex;
     justify-content: space-between;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--text-muted);
     margin-bottom: 10px;
 }
 
 .spotify-open-btn {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: #1db954;
     letter-spacing: 0.05em;
@@ -286,7 +286,7 @@
 }
 
 .spotify-adjacent-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 9px;
     color: var(--text-muted);
     letter-spacing: 0.08em;
@@ -333,7 +333,7 @@
 .spotify-adjacent-artist {
     font-size: 11px;
     color: var(--text-dim);
-    font-family: var(--mono);
+    font-family: var(--display);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -354,7 +354,7 @@
 }
 
 .typing-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     color: var(--cherry);
     letter-spacing: 0.1em;
@@ -379,7 +379,7 @@
 .typing-start-btn {
     background: var(--cherry);
     color: #fff;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     padding: 11px 22px;
     border-radius: 8px;
@@ -396,7 +396,7 @@
 }
 
 .typing-sentence {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 14px;
     line-height: 1.85;
     background: rgba(0, 0, 0, 0.35);
@@ -415,7 +415,7 @@
     border-radius: 8px;
     padding: 10px 12px;
     color: var(--text);
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 13px;
     outline: none;
     transition: border-color 0.2s;
@@ -432,16 +432,22 @@
     justify-content: center;
 }
 
+.typing-stat {
+    min-width: 64px;
+    text-align: center;
+}
+
 .typing-stat-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--text-muted);
 }
 
 .typing-stat-value {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 18px;
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
 }
 
 .typing-active {
@@ -452,7 +458,7 @@
 }
 
 .typing-go-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 20px;
     color: var(--text);
     letter-spacing: 0.1em;
@@ -470,7 +476,7 @@
 }
 
 .typing-done-label {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     color: #5ecf8a;
 }
@@ -478,7 +484,7 @@
 .typing-next-btn {
     background: var(--cherry);
     color: #fff;
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     padding: 6px 16px;
     border-radius: 6px;

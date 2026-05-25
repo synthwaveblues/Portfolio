@@ -124,7 +124,7 @@ export default function SpotifyWidget() {
 
       {data.nextTrack && (
         <div className="spotify-adjacent">
-          <div className="spotify-adjacent-label">next in queue</div>
+          <div className="spotify-adjacent-label">{data.isPlaying ? 'next in queue' : 'played before'}</div>
           <div className="spotify-adjacent-row">
             <a href={data.nextTrack.songUrl} target="_blank" rel="noreferrer" className="spotify-adjacent-art">
               {data.nextTrack.albumArt

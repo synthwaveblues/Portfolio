@@ -21,7 +21,7 @@
 }
 
 .timeline-col-title {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     color: var(--text-dim);
     white-space: nowrap;
@@ -65,13 +65,13 @@
 }
 
 .timeline-period {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     color: var(--cherry);
 }
 
 .timeline-location {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10px;
     color: var(--text-muted);
 }

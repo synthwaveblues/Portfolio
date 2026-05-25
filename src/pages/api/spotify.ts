@@ -93,12 +93,13 @@ export const GET: APIRoute = async () => {
     if (recentData) {
       const last = recentData?.items?.[0]?.track;
       if (last) {
+        const prevTrack = recentData?.items?.[1]?.track ?? null;
         return new Response(
           JSON.stringify({
             isPlaying: false,
             ...formatTrack(last),
             progress: 0,
-            nextTrack: null,
+            nextTrack: prevTrack ? formatTrack(prevTrack) : null,
           }),
           {status: 200, headers: {'Content-Type': 'application/json'}}
         );

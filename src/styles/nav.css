@@ -19,11 +19,11 @@
 
 .nav-logo {
     color: var(--cherry);
-    font-family: var(--mono);
-    font-size: 15px;
+    font-family: var(--display);
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     transition: opacity 0.2s;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .nav-link {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     color: var(--text-dim);
     letter-spacing: 0.05em;
