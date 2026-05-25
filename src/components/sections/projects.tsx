@@ -24,9 +24,6 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
   return (
     <div className="demo-panel">
       <div className="demo-panel-header">
-        <div className="demo-panel-title">
-          <span>LIVE DEMO - {project.name}</span>
-        </div>
         <span className="demo-panel-close" onClick={onClose}>×</span>
       </div>
       <div className="demo-panel-body">

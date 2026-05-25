@@ -15,6 +15,12 @@
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
     background-size: 32px 32px;
     pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+}
+
+[data-theme="light"] .hero-dot-grid {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
 }
 
 .hero-glow {
@@ -89,7 +95,7 @@
 
 .hero-button-main {
     background: var(--cherry);
-    color: var(--text);
+    color: #fff;
     font-family: var(--display);
     font-size: 13px;
     padding: 12px 24px;
@@ -112,6 +118,7 @@
     border: 1px solid var(--border2);
     border-radius: 6px;
     color: var(--text-dim);
+    background: var(--bg);
     transition: all 0.2s;
     letter-spacing: 0.04em;
 }
@@ -124,13 +131,22 @@
 .hero-code-card {
     flex: 0 0 auto;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    background: var(--card-bg);
+    background: var(--bg2);
     z-index: 1;
-    border: 1px solid var(--border);
-    padding: 20px 24px;
-    max-width: 560px;
+    border: 1px solid transparent;
+    padding: 28px 32px;
+    max-width: 640px;
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
-    border-radius: 12px;
+    border-radius: 20px;
+}
+
+[data-theme="light"] .hero-code-card {
+    background: #2a2a35;
+    border-color: transparent;
+}
+
+[data-theme="light"] .hero-code-pre {
+    color: #f0f0f5;
 }
 
 .hero-code-dots {
@@ -141,11 +157,16 @@
 
 .hero-code-pre {
     font-family: var(--mono);
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--text);
+    font-size: 14px;
+    line-height: 1.9;
+    color: #f0f0f5;
     white-space: pre-wrap;
 }
+
+.ct-comment { color: #6e6e78; }
+.ct-kw      { color: #d42b4c; }
+.ct-var     { color: #7ec8e3; }
+.ct-str     { color: #a8d8a8; }
 
 .hero-scroll-hint {
     position: absolute;

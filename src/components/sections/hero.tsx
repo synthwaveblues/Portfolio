@@ -94,19 +94,15 @@ export default function Hero() {
             />
           ))}
         </div>
-        <pre
-          className="hero-code-pre"
-          dangerouslySetInnerHTML={{
-            __html: `<span style="color:#6e6e78">// developer.ts</span>
-<span style="color:#d42b4c">const</span> <span style="color:#7ec8e3">developer</span> = {
-  name: <span style="color:#a8d8a8">"Anton Shevchenko"</span>,
-  stack: [<span style="color:#a8d8a8">"TypeScript"</span>, <span style="color:#a8d8a8">"NestJS"</span>, <span style="color:#a8d8a8">"React"</span>, <span style="color:#a8d8a8">"PostgreSQL"</span>],
-  thesis: <span style="color:#a8d8a8">"AI-Powered Exam Platform"</span>,
-  passion: <span style="color:#a8d8a8">"systems that scale"</span>,
-  status: <span style="color:#a8d8a8">"open_to_work ✓ "</span>
-};`,
-          }}
-        />
+        <pre className="hero-code-pre">{
+}<span className="ct-comment">{'// developer.ts'}</span>{'\n'
+}<span className="ct-kw">const</span>{' '}<span className="ct-var">developer</span>{' = {\n'
+}{'  name: '}<span className="ct-str">{"\"Anton Shevchenko\""}</span>{',\n'
+}{'  stack: ['}<span className="ct-str">{"\"TypeScript\""}</span>{', '}<span className="ct-str">{"\"NestJS\""}</span>{', '}<span className="ct-str">{"\"React\""}</span>{', '}<span className="ct-str">{"\"PostgreSQL\""}</span>{'],\n'
+}{'  thesis: '}<span className="ct-str">{"\"AI-Powered Exam Platform\""}</span>{',\n'
+}{'  passion: '}<span className="ct-str">{"\"systems that scale\""}</span>{',\n'
+}{'  status: '}<span className="ct-str">{"\"open_to_work ✓ \""}</span>{'\n'
+}{'};'}</pre>
       </div>
 
       {/* scroll hint */}

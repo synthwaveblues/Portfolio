@@ -20,6 +20,7 @@
     --bg: #07070a;
     --bg2: #0e0e14;
     --bg3: #13131a;
+    --bg4: #1c1c28;
     --card-bg: rgba(212, 43, 76, 0.05);
     --card-header-bg: rgba(212, 43, 76, 0.09);
 
@@ -35,6 +36,22 @@
     --mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
+[data-theme="light"] {
+    --bg: #f4f4f8;
+    --bg2: #eaeaef;
+    --bg3: #e0e0e8;
+    --bg4: #d4d4e0;
+    --card-bg: rgba(212, 43, 76, 0.05);
+    --card-header-bg: rgba(212, 43, 76, 0.09);
+
+    --text: #0c0c12;
+    --text-dim: #444452;
+    --text-muted: #8888a0;
+
+    --border: rgba(212, 43, 76, 0.20);
+    --border2: rgba(212, 43, 76, 0.38);
+}
+
 .preload * {
     transition: none !important;
 }
@@ -46,12 +63,16 @@
     padding: 0;
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    transition: background 0.35s, color 0.35s;
+}
 
 body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
+    transition: background 0.35s, color 0.35s;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }

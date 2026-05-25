@@ -1,15 +1,32 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 const NAV_LINKS = ['projects', 'stack', 'experience', 'fun', 'contact'] as const;
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState<boolean>(false)
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [light, setLight] = useState<boolean>(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0)
-    window.addEventListener('scroll', onScroll, {passive: true})
-    return () => window.removeEventListener('scroll', onScroll)
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    setLight(isLight);
+    // Enable transition only after state is synced — prevents animation on load
+    requestAnimationFrame(() => {
+      toggleRef.current?.setAttribute('data-ready', '');
+    });
   }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener('scroll', onScroll, {passive: true});
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const applyTheme = (isLight: boolean) => {
+    setLight(isLight);
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  };
 
   return (
     <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
@@ -26,20 +43,33 @@ export default function Nav() {
         <a
           className='nav-link'
           href='https://github.com/synthwaveblues'
-          target='_blank' // open the link in a new tab or window instead of navigating away from your website
-          rel="noreferrer" // prevent leaking referrer information to the linked site
+          target='_blank'
+          rel="noreferrer"
         >
           github ↗
         </a>
         <a
           className='nav-link'
           href='https://www.linkedin.com/in/anton-shevchenko-8a4827357/'
-          target='_blank' // open the link in a new tab or window instead of navigating away from your website
-          rel="noreferrer" // prevent leaking referrer information to the linked site
+          target='_blank'
+          rel="noreferrer"
         >
           linkedin ↗
         </a>
+        <button
+          ref={toggleRef}
+          className="theme-toggle"
+          onClick={() => applyTheme(!light)}
+          aria-label="Toggle theme"
+          suppressHydrationWarning
+        >
+          <div className="theme-toggle-track">
+            <span>☾</span>
+            <span>☀</span>
+          </div>
+          <div className="theme-toggle-thumb"/>
+        </button>
       </div>
     </nav>
-  )
+  );
 }

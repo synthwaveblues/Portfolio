@@ -88,13 +88,14 @@ export default function SnakeGame({ onClose }: SnakeGameProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const isLight = document.documentElement.dataset.theme === 'light';
     const W = COLS * CELL, H = ROWS * CELL;
     ctx.clearRect(0, 0, W, H);
 
-    ctx.fillStyle = '#0a0a0e';
+    ctx.fillStyle = isLight ? '#e0e0e8' : '#0a0a0e';
     ctx.fillRect(0, 0, W, H);
 
-    ctx.strokeStyle = '#1a1a22';
+    ctx.strokeStyle = isLight ? '#cacad6' : '#1a1a22';
     ctx.lineWidth = 0.5;
     for (let x = 0; x <= COLS; x++) {
       ctx.beginPath(); ctx.moveTo(x * CELL, 0); ctx.lineTo(x * CELL, H); ctx.stroke();
