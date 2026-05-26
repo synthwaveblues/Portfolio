@@ -17,10 +17,10 @@
     --cherry-dim: #d42b4c1a;
     --cherry-glow: #d42b4c40;
 
-    --bg: #07070a;
-    --bg2: #0e0e14;
-    --bg3: #13131a;
-    --bg4: #1c1c28;
+    --bg: #0f0f18;
+    --bg2: #1a1a28;
+    --bg3: #222234;
+    --bg4: #2c2c42;
     --card-bg: rgba(212, 43, 76, 0.05);
     --card-header-bg: rgba(212, 43, 76, 0.09);
 
@@ -37,10 +37,10 @@
 }
 
 [data-theme="light"] {
-    --bg: #f4f4f8;
-    --bg2: #eaeaef;
-    --bg3: #e0e0e8;
-    --bg4: #d4d4e0;
+    --bg: #f2e0e5;
+    --bg2: #eacdd5;
+    --bg3: #ddbac4;
+    --bg4: #cfa7b3;
     --card-bg: rgba(212, 43, 76, 0.05);
     --card-header-bg: rgba(212, 43, 76, 0.09);
 

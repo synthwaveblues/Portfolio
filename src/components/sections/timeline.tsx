@@ -22,7 +22,7 @@ function ExperienceCard({item, visible, index}: ExperienceCardProps) {
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(20px)',
-        transition: `all 0.5s ease ${index * 0.1}s`,
+        transition: `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`,
       }}
     >
       <div className="timeline-dot"/>
@@ -50,7 +50,7 @@ function EducationCard({item, visible, index}: EducationCardProps) {
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(20px)',
-        transition: `all 0.5s ease ${index * 0.15}s`,
+        transition: `opacity 0.5s ease ${index * 0.15}s, transform 0.5s ease ${index * 0.15}s`,
       }}
     >
       <div className="timeline-dot"/>

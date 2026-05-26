@@ -104,7 +104,6 @@
     letter-spacing: 0.04em;
     font-weight: 600;
     transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(212, 43, 76, 0.4);
 }
 
 .hero-button-main:hover {
@@ -145,6 +144,16 @@
     border-color: transparent;
 }
 
+@keyframes card-reopen {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: none; }
+}
+
+.hero-code-card-reopen {
+    animation: card-reopen 0.35s ease forwards !important;
+    transition: none !important;
+}
+
 [data-theme="light"] .hero-code-pre {
     color: #f0f0f5;
 }
@@ -163,10 +172,21 @@
     white-space: pre-wrap;
 }
 
-.ct-comment { color: #6e6e78; }
-.ct-kw      { color: #d42b4c; }
-.ct-var     { color: #7ec8e3; }
-.ct-str     { color: #a8d8a8; }
+.ct-comment {
+    color: #6e6e78;
+}
+
+.ct-kw {
+    color: #d42b4c;
+}
+
+.ct-var {
+    color: #7ec8e3;
+}
+
+.ct-str {
+    color: #a8d8a8;
+}
 
 .hero-scroll-hint {
     position: absolute;

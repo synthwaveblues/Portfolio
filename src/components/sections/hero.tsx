@@ -2,16 +2,31 @@ import {useState, useEffect} from 'react';
 
 const PHRASES = ['Full-Stack Developer', 'NestJS Architect', 'AI Integrator', 'Backend Engineer'] as const;
 
+type WindowState = 'open' | 'closing' | 'closed';
+
 export default function Hero() {
   const [typed, setTyped] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [deleting, setDeleting] = useState<boolean>(false);
   const [phraseIdx, setPhraseIdx] = useState<number>(0);
+  const [windowState, setWindowState] = useState<WindowState>('open');
+  const [reopening, setReopening] = useState<boolean>(false);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true));
     return () => clearTimeout(t);
   }, [])
+
+  const handleRedDot = () => {
+    if (windowState !== 'open') return;
+    setWindowState('closing');
+    setTimeout(() => setWindowState('closed'), 150);
+    setTimeout(() => {
+      setWindowState('open');
+      setReopening(true);
+      setTimeout(() => setReopening(false), 400);
+    }, 950);
+  };
 
   useEffect(() => {
     const current = PHRASES[phraseIdx];
@@ -80,17 +95,21 @@ export default function Hero() {
       </div>
 
       { /* RIGHT SIDE*/}
-      <div className="hero-code-card"
-           style={{
-             opacity: visible ? 1 : 0,
-             transform: visible ? 'none' : 'translateY(20px)',
-           }}
+      <div
+           className={`hero-code-card${reopening ? ' hero-code-card-reopen' : ''}`}
+           style={(() => {
+             if (!visible) return { opacity: 0, transform: 'translateY(20px)' };
+             if (windowState === 'closing') return { opacity: 0, transform: 'scale(0.94) translateY(6px)', transition: 'opacity 0.15s ease, transform 0.15s ease' };
+             if (windowState === 'closed') return { opacity: 0, transform: 'scale(0.94)', transition: 'none', pointerEvents: 'none' as const };
+             return { opacity: 1, transform: 'none' };
+           })()}
       >
         <div className="hero-code-dots">
-          {(['#ff5f57', '#febc2e', '#28c840'] as const).map(c => (
+          {(['#ff5f57', '#febc2e', '#28c840'] as const).map((c, i) => (
             <span
               key={c}
-              style={{width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block'}}
+              onClick={i === 0 ? handleRedDot : undefined}
+              style={{width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block', cursor: i === 0 ? 'pointer' : 'default'}}
             />
           ))}
         </div>

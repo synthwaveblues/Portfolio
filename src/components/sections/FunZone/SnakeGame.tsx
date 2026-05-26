@@ -105,12 +105,9 @@ export default function SnakeGame({ onClose }: SnakeGameProps) {
     }
 
     ctx.fillStyle = '#d42b4c';
-    ctx.shadowColor = '#d42b4c';
-    ctx.shadowBlur = 10;
     ctx.beginPath();
     ctx.arc(food[0] * CELL + CELL / 2, food[1] * CELL + CELL / 2, CELL / 2 - 2, 0, Math.PI * 2);
     ctx.fill();
-    ctx.shadowBlur = 0;
 
     snake.forEach(([x, y], i) => {
       const ratio = i / snake.length;

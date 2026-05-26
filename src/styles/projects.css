@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 
-.project-card:not(.project-card-open):hover {
+.project-card:hover {
     background: var(--bg3);
 }
 
