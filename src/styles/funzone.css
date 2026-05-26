@@ -514,3 +514,24 @@
 [data-theme="light"] .typing-stat-label {
     color: var(--text-dim);
 }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .fz-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .fz-section {
+        padding: 80px 20px;
+    }
+
+    .fz-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fz-egg-row {
+        flex-direction: column;
+    }
+}

@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     videodesc: 'A full walkthrough of the AI exam platform — uploading a PDF, triggering OCR processing, and watching Gemini generate structured quizzes and flashcards in real time.',
     year: '2025–2026',
     github: 'https://github.com/StudentHelperCom/student-helper-backend',
-    videoUrl: '',
+    videoUrl: 'https://www.youtube.com/watch?v=XUZOPHQHnKQ',
     image: 'student_helper.png',
   },
   {

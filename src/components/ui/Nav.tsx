@@ -56,20 +56,20 @@ export default function Nav() {
         >
           linkedin ↗
         </a>
-        <button
-          ref={toggleRef}
-          className="theme-toggle"
-          onClick={() => applyTheme(!light)}
-          aria-label="Toggle theme"
-          suppressHydrationWarning
-        >
-          <div className="theme-toggle-track">
-            <span>☾</span>
-            <span>☀</span>
-          </div>
-          <div className="theme-toggle-thumb"/>
-        </button>
       </div>
+      <button
+        ref={toggleRef}
+        className="theme-toggle"
+        onClick={() => applyTheme(!light)}
+        aria-label="Toggle theme"
+        suppressHydrationWarning
+      >
+        <div className="theme-toggle-track">
+          <span>☾</span>
+          <span>☀</span>
+        </div>
+        <div className="theme-toggle-thumb"/>
+      </button>
     </nav>
   );
 }

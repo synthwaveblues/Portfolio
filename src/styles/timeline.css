@@ -102,3 +102,25 @@
     color: var(--text-dim);
     line-height: 1.6;
 }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .timeline-cols {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .timeline-section {
+        padding: 80px 20px;
+    }
+
+    .timeline-cols {
+        gap: 40px;
+    }
+
+    .timeline-company {
+        font-size: 16px;
+    }
+}
