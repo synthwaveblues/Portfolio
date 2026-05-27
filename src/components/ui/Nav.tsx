@@ -1,16 +1,17 @@
 import {useState, useEffect, useRef} from 'react';
 
 const NAV_LINKS = ['projects', 'stack', 'experience', 'fun', 'contact'] as const;
+type NavLink = typeof NAV_LINKS[number];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [light, setLight] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<NavLink | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
     setLight(isLight);
-    // Enable transition only after state is synced — prevents animation on load
     requestAnimationFrame(() => {
       toggleRef.current?.setAttribute('data-ready', '');
     });
@@ -20,6 +21,39 @@ export default function Nav() {
     const onScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener('scroll', onScroll, {passive: true});
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const visible = new Map<NavLink, number>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = entry.target.id as NavLink;
+          if (entry.isIntersecting) {
+            visible.set(id, entry.intersectionRatio);
+          } else {
+            visible.delete(id);
+          }
+        }
+        if (visible.size === 0) {
+          setActiveSection(null);
+          history.replaceState(null, '', window.location.pathname);
+          return;
+        }
+        const top = [...visible.entries()].reduce((a, b) => a[1] >= b[1] ? a : b)[0];
+        setActiveSection(top);
+        history.replaceState(null, '', `#${top}`);
+      },
+      {threshold: [0, 0.1, 0.25, 0.5]}
+    );
+
+    NAV_LINKS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const applyTheme = (isLight: boolean) => {
@@ -38,26 +72,11 @@ export default function Nav() {
       </span>
       <div className="nav-links">
         {NAV_LINKS.map(s => (
-          <a key={s} className="nav-link" href={`#${s}`}>{s}</a>
+          <a key={s} className={`nav-link${activeSection === s ? ' nav-link-active' : ''}`} href={`#${s}`}>{s}</a>
         ))}
-        <a
-          className='nav-link'
-          href='https://github.com/synthwaveblues'
-          target='_blank'
-          rel="noreferrer"
-        >
-          github ↗
-        </a>
-        <a
-          className='nav-link'
-          href='https://www.linkedin.com/in/anton-shevchenko-8a4827357/'
-          target='_blank'
-          rel="noreferrer"
-        >
-          linkedin ↗
-        </a>
       </div>
-      <button
+      <div className="nav-right">
+        <button
         ref={toggleRef}
         className="theme-toggle"
         onClick={() => applyTheme(!light)}
@@ -70,6 +89,7 @@ export default function Nav() {
         </div>
         <div className="theme-toggle-thumb"/>
       </button>
+      </div>
     </nav>
   );
 }

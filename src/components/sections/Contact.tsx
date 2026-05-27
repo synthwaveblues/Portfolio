@@ -3,11 +3,9 @@ const CONTACT_ROWS = [
   {label: 'location', value: 'Poznań, Poland / Remote'},
   {label: 'languages', value: 'English · Polish · Ukrainian'},
   {label: 'github', value: 'github.com/synthwaveblues', href: 'https://github.com/synthwaveblues'},
-  {
-    label: 'linkedin',
-    value: 'linkedin.com/in/anton-shevchenko',
-    href: 'https://www.linkedin.com/in/anton-shevchenko-8a4827357/'
-  },
+  {label: 'linkedin', value: 'linkedin.com/in/anton-shevchenko', href: 'https://www.linkedin.com/in/anton-shevchenko-8a4827357/'},
+  {label: 'telegram', value: '@synthwaveblues', href: 'https://t.me/synthwaveblues'},
+  {label: 'instagram', value: '@synthwaveblues', href: 'https://instagram.com/synthwaveblues'},
 ] as const;
 
 const ASCII_ART = String.raw`                      __  .__                              ___.   .__
@@ -55,7 +53,7 @@ export default function Contact() {
         <div className="contact-footer">
           <span className="contact-footer-logo">{'<AS/>'}</span>
           <span className="contact-footer-built">Built with Astro &amp; React</span>
-          <span className="contact-footer-copy">© 2025 Anton Shevchenko</span>
+          <span className="contact-footer-copy">© 2026 Anton Shevchenko</span>
         </div>
       </div>
     </section>

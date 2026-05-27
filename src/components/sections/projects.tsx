@@ -30,7 +30,9 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
             <iframe
               src={project.videoUrl
                 .replace('watch?v=', 'embed/')
-                .replace('youtu.be/', 'youtube.com/embed/')}
+                .replace('youtu.be/', 'youtube.com/embed/')
+                .replace('youtube.com/shorts/', 'youtube.com/embed/')
+                .split('?')[0]}
               className="demo-iframe"
               allow="autoplay; fullscreen"
             />

@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
     videodesc: 'App walkthrough on an Android device — browsing the watchlist, marking movies as watched, adding new titles, and the smooth Material animations throughout.',
     year: '2025-2026',
     github: 'https://github.com/MiOnMu/MovieChecklist',
-    videoUrl: '',
+    videoUrl: 'https://youtube.com/shorts/DvitnGht1JI?feature=share',
     image: 'movie_checklist.png',
   },
   {
@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     videodesc: 'Full walkthrough of the Natours platform — browsing tours, signing up, booking a tour with Stripe checkout, managing your account, and the admin panel for tour and user management.',
     year: '2026',
     github: 'https://github.com/synthwaveblues/Natours',
-    videoUrl: '',
+    videoUrl: 'https://youtu.be/QT03tw4Zv9M',
     image: 'natours.png',
   }
 ]

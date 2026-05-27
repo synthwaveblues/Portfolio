@@ -127,6 +127,23 @@
     border-color: var(--text-dim);
 }
 
+.hero-socials {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.hero-social-link {
+    color: var(--text-dim);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.hero-social-link:hover {
+    color: var(--text);
+}
+
 .hero-code-card {
     flex: 0 0 auto;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -145,8 +162,14 @@
 }
 
 @keyframes card-reopen {
-    from { opacity: 0; transform: scale(0.93); }
-    to   { opacity: 1; transform: none; }
+    from {
+        opacity: 0;
+        transform: scale(0.93);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .hero-code-card-reopen {
