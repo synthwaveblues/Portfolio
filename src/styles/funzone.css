@@ -477,6 +477,10 @@
     color: #5ecf8a;
 }
 
+[data-theme="light"] .typing-done-label {
+    color: #1e8a4a;
+}
+
 .typing-next-btn {
     background: var(--cherry);
     color: #fff;
