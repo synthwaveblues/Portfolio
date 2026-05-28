@@ -238,7 +238,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 230px 20px 100px;
+        padding: 200px 20px 100px;
         gap: 32px;
     }
 
@@ -252,5 +252,9 @@
 
     .hero-code-card {
         display: none;
+    }
+
+    .hero-scroll-hint {
+        bottom: 60px;
     }
 }
