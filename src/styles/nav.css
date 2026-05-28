@@ -9,23 +9,13 @@
     align-items: center;
     padding: 20px 48px;
     border-bottom: 1px solid var(--border);
-    background: rgba(7, 7, 10, 0.5);
-    backdrop-filter: blur(8px);
-    transition: background 0.3s, border-bottom 0.3s, backdrop-filter 0.3s;
-}
-
-.nav-scrolled {
     background: rgba(7, 7, 10, 0.85);
     backdrop-filter: blur(12px);
+    transition: background 0.3s, border-bottom 0.3s;
 }
 
 [data-theme="light"] .nav {
-    background: rgba(244, 244, 248, 0.6);
-}
-
-[data-theme="light"] .nav-scrolled {
     background: rgba(244, 244, 248, 0.88);
-    backdrop-filter: blur(12px);
 }
 
 .theme-toggle {
