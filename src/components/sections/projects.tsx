@@ -48,7 +48,28 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
             </div>
           )}
         </div>
-        <p className="demo-desc">{project.videodesc}</p>
+        {project.demoDetails ? (
+          <div className="demo-desc demo-desc-rich">
+            {project.demoDetails.map((section, i) => (
+              <div key={i} className="demo-section">
+                <div className="demo-section-title">{section.title}</div>
+                {section.body && <p className="demo-section-body">{section.body}</p>}
+                {section.items && (
+                  <ul className="demo-section-list">
+                    {section.items.map((item, j) => (
+                      <li key={j} className="demo-section-item">
+                        <span className="demo-section-bullet"/>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="demo-desc">{project.videodesc}</p>
+        )}
       </div>
     </div>
   );
