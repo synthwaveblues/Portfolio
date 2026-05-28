@@ -73,8 +73,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-bio">
-          Building scalable microservices, AI-powered platforms,<br/>
-          clean APIs and Fullstack solutions.
+          Building scalable microservices, AI-powered platforms, clean APIs and Fullstack solutions.
         </div>
 
         <div className="hero-button">

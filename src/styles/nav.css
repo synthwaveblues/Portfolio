@@ -127,10 +127,15 @@
 
 @media (max-width: 768px) {
     .nav {
+        grid-template-columns: 1fr auto;
         padding: 16px 20px;
     }
 
     .nav-links {
         display: none;
+    }
+
+    .nav-right {
+        grid-column: 2;
     }
 }

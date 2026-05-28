@@ -231,3 +231,30 @@
     height: 40px;
     background: linear-gradient(to bottom, var(--border2), transparent);
 }
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 120px 20px 80px;
+        gap: 32px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-bio {
+        font-size: 15px;
+    }
+
+    .hero-code-card {
+        display: none;
+    }
+
+    .hero-scroll-hint {
+        display: none;
+    }
+}
