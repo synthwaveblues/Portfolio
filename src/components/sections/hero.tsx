@@ -11,11 +11,23 @@ export default function Hero() {
   const [phraseIdx, setPhraseIdx] = useState<number>(0);
   const [windowState, setWindowState] = useState<WindowState>('open');
   const [reopening, setReopening] = useState<boolean>(false);
+  const [scrollHintOpacity, setScrollHintOpacity] = useState<number>(1);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true));
     return () => clearTimeout(t);
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const hero = document.querySelector('.hero') as HTMLElement | null;
+      if (!hero) return;
+      const ratio = Math.min(window.scrollY / hero.offsetHeight, 1);
+      setScrollHintOpacity(1 - ratio);
+    };
+    window.addEventListener('scroll', onScroll, {passive: true});
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleRedDot = () => {
     if (windowState !== 'open') return;
@@ -152,7 +164,7 @@ export default function Hero() {
       </div>
 
       {/* scroll hint */}
-      <div className="hero-scroll-hint">
+      <div className="hero-scroll-hint" style={{opacity: scrollHintOpacity}}>
         <span>SCROLL</span>
         <div className="hero-scroll-line"/>
       </div>

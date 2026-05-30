@@ -18,7 +18,14 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0);
+    const onScroll = () => {
+      const atTop = window.scrollY === 0;
+      setScrolled(!atTop);
+      if (atTop) {
+        setActiveSection(null);
+        history.replaceState(null, '', window.location.pathname);
+      }
+    };
     window.addEventListener('scroll', onScroll, {passive: true});
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -36,7 +43,7 @@ export default function Nav() {
             visible.delete(id);
           }
         }
-        if (visible.size === 0) {
+        if (visible.size === 0 || window.scrollY === 0) {
           setActiveSection(null);
           history.replaceState(null, '', window.location.pathname);
           return;
