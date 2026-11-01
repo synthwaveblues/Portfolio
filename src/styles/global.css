@@ -70,11 +70,11 @@ html {
 }
 
 @media (min-width: 1024px) {
-    html { font-size: 112.5%; }
+    html { font-size: 106.25%; }
 }
 
 @media (min-width: 1400px) {
-    html { font-size: 125%; }
+    html { font-size: 112.5%; }
 }
 
 body {
