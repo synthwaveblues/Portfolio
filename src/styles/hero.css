@@ -25,12 +25,37 @@
 
 .hero-glow {
     position: absolute;
-    top: -20%;
-    left: -10%;
-    width: 60%;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 60%;
-    background: radial-gradient(ellipse, rgba(212, 43, 76, 0.08) 0%, transparent 70%);
+    opacity: 0.50;
+    background: radial-gradient(ellipse 40% 70% at 50% 0%,
+    rgba(212, 43, 76, 0.10) 0%, rgba(212, 43, 76, 0.07) 25%,
+    rgba(212, 43, 76, 0.035) 50%, rgba(212, 43, 76, 0.01) 75%, transparent 100%),
+    linear-gradient(90deg,
+            rgba(212, 43, 76, 0.04) 0%, rgba(212, 43, 76, 0.085) 25%,
+            rgba(212, 43, 76, 0.13) 50%, rgba(212, 43, 76, 0.085) 75%, rgba(212, 43, 76, 0.04) 100%);
+    mask-image: linear-gradient(to bottom,
+    #000 0%, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.5) 45%,
+    rgba(0, 0, 0, 0.22) 70%, rgba(0, 0, 0, 0.06) 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+    #000 0%, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.5) 45%,
+    rgba(0, 0, 0, 0.22) 70%, rgba(0, 0, 0, 0.06) 88%, transparent 100%);
     pointer-events: none;
+}
+
+.hero-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+}
+
+[data-theme="light"] .hero-glow {
+    opacity: 0.45;
 }
 
 .hero-content {
@@ -49,13 +74,13 @@
 }
 
 .hero-name-first {
-    font-size: clamp(52px, 7vw, 90px);
+    font-size: clamp(3.25rem, 7vw, 5.625rem);
     font-weight: 700;
     color: var(--text);
 }
 
 .hero-name-last {
-    font-size: clamp(52px, 7vw, 90px);
+    font-size: clamp(3.25rem, 7vw, 5.625rem);
     font-weight: 300;
     color: var(--text-dim);
 }
@@ -63,7 +88,7 @@
 .hero-type-row {
     font-family: var(--display);
     margin-bottom: 24px;
-    font-size: 18px;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -72,7 +97,7 @@
 
 .hero-prompt {
     color: var(--text-muted);
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .hero-cursor {
@@ -83,7 +108,7 @@
 .hero-bio {
     color: var(--text-dim);
     margin-bottom: 36px;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.7;
 }
 
@@ -97,7 +122,7 @@
     background: var(--cherry);
     color: #fff;
     font-family: var(--display);
-    font-size: 13px;
+    font-size: 0.8125rem;
     padding: 12px 24px;
     border: 1px solid var(--border2);
     border-radius: 6px;
@@ -112,7 +137,7 @@
 
 .hero-button-secondary {
     font-family: var(--display);
-    font-size: 13px;
+    font-size: 0.8125rem;
     padding: 12px 24px;
     border: 1px solid var(--border2);
     border-radius: 6px;
@@ -129,8 +154,8 @@
 
 .hero-socials {
     display: flex;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 20px;
+    margin-top: 28px;
 }
 
 .hero-social-link {
@@ -145,14 +170,19 @@
 }
 
 .hero-code-card {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    min-width: 0;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     background: var(--bg2);
     z-index: 1;
     border: 1px solid transparent;
-    padding: 28px 32px;
-    max-width: 640px;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+    padding: 36px 42px;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10),
+    0 4px 8px rgba(0, 0, 0, 0.10),
+    0 8px 16px rgba(0, 0, 0, 0.10),
+    0 16px 32px rgba(0, 0, 0, 0.10),
+    0 32px 64px rgba(0, 0, 0, 0.12);
     border-radius: 20px;
 }
 
@@ -183,13 +213,13 @@
 
 .hero-code-dots {
     display: flex;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 9px;
+    margin-bottom: 20px;
 }
 
 .hero-code-pre {
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 0.8125rem;
     line-height: 1.9;
     color: #f0f0f5;
     white-space: pre-wrap;
@@ -221,7 +251,7 @@
     align-items: center;
     gap: 8px;
     font-family: var(--display);
-    font-size: 10px;
+    font-size: 0.625rem;
     color: var(--text-muted);
     letter-spacing: 0.1em;
 }
@@ -230,6 +260,13 @@
     width: 1px;
     height: 40px;
     background: linear-gradient(to bottom, var(--border2), transparent);
+}
+
+/* ── Narrow laptop / tablet: no room beside the text, so hide the card ── */
+@media (max-width: 1299px) {
+    .hero-code-card {
+        display: none;
+    }
 }
 
 /* ── Mobile ───────────────────────────────────────────────── */
@@ -247,7 +284,7 @@
     }
 
     .hero-bio {
-        font-size: 15px;
+        font-size: 0.9375rem;
     }
 
     .hero-code-card {
@@ -258,4 +295,13 @@
         bottom: 60px;
     }
 
+    .hero-socials {
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+    .hero-social-link svg {
+        width: 20px;
+        height: 20px;
+    }
 }

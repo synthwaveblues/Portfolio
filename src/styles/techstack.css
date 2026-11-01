@@ -23,7 +23,7 @@
 }
 
 .category-card-icon {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: var(--display);
     width: 24px;
     color: var(--cherry);
@@ -33,7 +33,7 @@
 
 .category-card-title {
     font-family: var(--display);
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--text-muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -58,14 +58,14 @@
 }
 
 .skill-name {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--text);
     font-weight: 500;
 }
 
 .skill-level {
     font-family: var(--display);
-    font-size: 10px;
+    font-size: 0.625rem;
     color: var(--text-muted);
     transition: opacity 0.3s;
 }
