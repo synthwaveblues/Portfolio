@@ -51,7 +51,11 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    /* grain: the noise is a mask over white, not a background image. Chrome counts a background image this
+       big as the page's largest content and waits for it to "load", which pushed LCP back by ~2s */
+    background: #fff;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     opacity: 0.07;
     mix-blend-mode: overlay;
 }
@@ -65,6 +69,28 @@
     max-width: 560px;
     z-index: 1;
     transition: all 0.8s ease;
+}
+
+/* entrance: plain CSS so the hero is in the first paint instead of waiting for React to hydrate.
+   'backwards' only holds the start frame before it runs; once done it lets go, so the code window's
+   inline close/reopen styles still apply */
+@keyframes hero-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.hero-content,
+.hero-code-card {
+    animation: hero-in 0.8s ease backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-content,
+    .hero-code-card {
+        animation: none;
+    }
 }
 
 .hero-name {

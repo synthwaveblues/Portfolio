@@ -6,17 +6,11 @@ type WindowState = 'open' | 'closing' | 'closed';
 
 export default function Hero() {
   const [typed, setTyped] = useState<string>('');
-  const [visible, setVisible] = useState<boolean>(false);
   const [deleting, setDeleting] = useState<boolean>(false);
   const [phraseIdx, setPhraseIdx] = useState<number>(0);
   const [windowState, setWindowState] = useState<WindowState>('open');
   const [reopening, setReopening] = useState<boolean>(false);
   const [scrollHintOpacity, setScrollHintOpacity] = useState<number>(1);
-
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true));
-    return () => clearTimeout(t);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -66,13 +60,8 @@ export default function Hero() {
       <div className="hero-dot-grid"/>
       <div className="hero-glow"/>
 
-      { /* LEFT SIDE*/}
-      <div className="hero-content"
-           style={{
-             opacity: visible ? 1 : 0,
-             transform: visible ? 'none' : 'translateY(20px)',
-           }}
-      >
+      { /* LEFT SIDE: fades in with CSS (hero.css), so it shows before React loads */}
+      <div className="hero-content">
         <div className="hero-name">
           <span className="hero-name-first">Anton</span>
           <span className="hero-name-last">Shevchenko</span>
@@ -139,7 +128,6 @@ export default function Hero() {
       <div
         className={`hero-code-card${reopening ? ' hero-code-card-reopen' : ''}`}
         style={(() => {
-          if (!visible) return {opacity: 0, transform: 'translateY(20px)'};
           if (windowState === 'closing') return {
             opacity: 0,
             transform: 'scale(0.94) translateY(6px)',

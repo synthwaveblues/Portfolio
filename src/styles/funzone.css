@@ -198,7 +198,10 @@
 }
 
 .spotify-title {
-    display: inline;
+    /* taller hit area (24px) for touch; the negative margin keeps the layout where it was */
+    display: inline-block;
+    padding-block: 3px;
+    margin-block: -3px;
     font-weight: 700;
     font-size: 0.9375rem;
     margin-bottom: 3px;
@@ -213,13 +216,18 @@
 .spotify-artist {
     font-size: 0.75rem;
     color: var(--text-dim);
-    margin-bottom: 12px;
+    /* room for the links' taller hit areas, which overflow: hidden would otherwise clip */
+    padding-block: 4px;
+    margin-block: -4px 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .spotify-meta-link {
+    display: inline-block;
+    padding: 4px 2px;
+    margin: -4px -2px;
     color: inherit;
     transition: color 0.2s;
 }
@@ -323,13 +331,17 @@
     font-weight: 600;
     color: var(--text);
     transition: color 0.2s;
-    display: inline;
+    display: inline-block;
+    padding-block: 3px;
+    margin-block: -3px;
 }
 
 .spotify-adjacent-artist {
     font-size: 0.6875rem;
     color: var(--text-dim);
     font-family: var(--display);
+    padding-block: 4px;
+    margin-block: -4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

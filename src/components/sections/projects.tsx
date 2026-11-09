@@ -75,6 +75,9 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
   );
 }
 
+// made by scripts/project-images.mjs as public/projects/<image>-<width>.webp
+const THUMB_WIDTHS = [480, 800, 1200];
+
 function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
   return (
     <div
@@ -85,7 +88,17 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
       <div className="project-card-inner">
         <div className="project-thumbnail">
           {project.image
-            ? <img src={project.image} alt={project.name} className="project-thumbnail-img"/>
+            ? <img
+                src={`/projects/${project.image}-800.webp`}
+                srcSet={THUMB_WIDTHS.map(w => `/projects/${project.image}-${w}.webp ${w}w`).join(', ')}
+                sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1024px) 50vw, 420px"
+                width={800}
+                height={450}
+                loading="lazy"
+                decoding="async"
+                alt={project.name}
+                className="project-thumbnail-img"
+              />
             : <span className="project-thumbnail-placeholder">no preview</span>
           }
         </div>
@@ -109,7 +122,6 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
 }
 
 function getCols(): number {
-  if (typeof window === 'undefined') return 3;
   if (window.innerWidth <= 600) return 1;
   if (window.innerWidth <= 1024) return 2;
   return 3;
@@ -118,7 +130,9 @@ function getCols(): number {
 export default function Projects() {
   const [openId, setOpenId]       = useState<string | null>(null);
   const [displayId, setDisplayId] = useState<string | null>(null);
-  const [cols, setCols]           = useState<number>(getCols);
+  // starts at 3 like the server-rendered HTML, then switches to the real count once mounted;
+  // reading the window here would make the first render differ from the HTML and break hydration
+  const [cols, setCols]           = useState<number>(3);
   const demoRef  = useRef<HTMLDivElement>(null);
   const colsRef  = useRef<number>(cols);
 
@@ -132,6 +146,7 @@ export default function Projects() {
         setDisplayId(null);
       }
     };
+    update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);
   }, []);

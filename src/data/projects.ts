@@ -16,6 +16,7 @@ export interface Project {
   year: string;
   github: string;
   videoUrl: string;
+  // file name in assets/projects without .png; scripts/project-images.mjs makes the WebP sizes
   image?: string;
 }
 
@@ -48,7 +49,7 @@ export const PROJECTS: Project[] = [
     year: '2025–2026',
     github: 'https://github.com/StudentHelperCom/student-helper-backend',
     videoUrl: 'https://www.youtube.com/watch?v=XUZOPHQHnKQ',
-    image: 'student_helper.png',
+    image: 'student_helper',
   },
   {
     id: 'movie-checklist',
@@ -78,7 +79,7 @@ export const PROJECTS: Project[] = [
     year: '2025-2026',
     github: 'https://github.com/MiOnMu/MovieChecklist',
     videoUrl: 'https://youtube.com/shorts/DvitnGht1JI?feature=share',
-    image: 'movie_checklist.png',
+    image: 'movie_checklist',
   },
   {
     id: 'natours',
@@ -107,6 +108,6 @@ export const PROJECTS: Project[] = [
     year: '2026',
     github: 'https://github.com/synthwaveblues/Natours',
     videoUrl: 'https://youtu.be/QT03tw4Zv9M',
-    image: 'natours.png',
+    image: 'natours',
   }
 ]

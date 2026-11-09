@@ -10,9 +10,10 @@ import Contact from "../components/sections/Contact.tsx";
 
 <Layout title="Anton Shevchenko - Full-Stack Developer">
   <Hero client:load/>
-  <Projects client:load/>
-  <TechStack client:load/>
-  <Timeline client:load/>
-  <FunZone client:load/>
-  <Contact client:load/>
+  <!-- the rest is in the HTML already; their JS loads as each section nears the screen -->
+  <Projects client:visible={{rootMargin: '400px'}}/>
+  <TechStack client:visible={{rootMargin: '400px'}}/>
+  <Timeline client:visible={{rootMargin: '400px'}}/>
+  <FunZone client:visible={{rootMargin: '400px'}}/>
+  <Contact client:visible={{rootMargin: '400px'}}/>
 </Layout>

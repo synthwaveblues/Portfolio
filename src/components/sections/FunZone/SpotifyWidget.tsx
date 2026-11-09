@@ -82,9 +82,11 @@ export default function SpotifyWidget() {
     <div className="fz-card-label">{data.isPlaying ? 'Now Playing' : 'Played Recently'}</div>
     <div className="spotify-card">
       <div className="spotify-top">
-        <a href={data.songUrl} target="_blank" rel="noopener noreferrer" className="spotify-album-art">
+        {/* same link as the title next to it: mouse-only, so keyboards and screen readers get it once */}
+        <a href={data.songUrl} target="_blank" rel="noopener noreferrer" className="spotify-album-art"
+           tabIndex={-1} aria-hidden="true">
           {data.albumArt
-            ? <img src={data.albumArt} alt="album art" className="spotify-album-img"/>
+            ? <img src={data.albumArt} alt="" className="spotify-album-img"/>
             : <div className="spotify-album-note">♪</div>
           }
         </a>
@@ -126,9 +128,10 @@ export default function SpotifyWidget() {
         <div className="spotify-adjacent">
           <div className="spotify-adjacent-label">{data.isPlaying ? 'next in queue' : 'played before'}</div>
           <div className="spotify-adjacent-row">
-            <a href={data.nextTrack.songUrl} target="_blank" rel="noreferrer" className="spotify-adjacent-art">
+            <a href={data.nextTrack.songUrl} target="_blank" rel="noreferrer" className="spotify-adjacent-art"
+               tabIndex={-1} aria-hidden="true">
               {data.nextTrack.albumArt
-                ? <img src={data.nextTrack.albumArt} alt={data.nextTrack.album}/>
+                ? <img src={data.nextTrack.albumArt} alt=""/>
                 : <span>♪</span>
               }
             </a>

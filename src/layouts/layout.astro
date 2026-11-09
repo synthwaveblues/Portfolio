@@ -1,5 +1,11 @@
 ---
 import Nav from '../components/ui/Nav';
+// self-hosted fonts: no request to Google before the page can paint
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource-variable/space-grotesk/wght.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import spaceGroteskLatin from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -28,6 +34,9 @@ const ogImage = new URL('/og.png', Astro.url).href;
   <meta name="description" content={description}/>
   <link rel="canonical" href={canonical}/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <!-- the two faces the hero uses, fetched alongside the CSS instead of after it -->
+  <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href={spaceGroteskLatin} as="font" type="font/woff2" crossorigin/>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
@@ -60,7 +69,9 @@ const ogImage = new URL('/og.png', Astro.url).href;
 </head>
 <body>
 <Nav client:load/>
-<slot/>
+<main>
+  <slot/>
+</main>
 <script>
   import '../scripts/scrollbar';
 </script>
