@@ -16,6 +16,7 @@
     --cherry: #d42b4c;
     --cherry-dim: #d42b4c1a;
     --cherry-glow: #d42b4c40;
+    --edge-color: #6e1830;
 
     --bg: #0f0f18;
     --bg2: #1a1a28;
@@ -117,28 +118,65 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Shared ───────────────────────────────────────────────────── */
-.section-label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 6px;
+.hero-code-card,
+.project-card,
+.terminal-window,
+.snake-window {
+    position: relative;
 }
 
-.section-label-slash {
-    font-family: var(--display);
-    font-size: 0.6875rem;
-    color: var(--cherry);
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-    font-weight: 300;
+/* window edge: solid black cherry at the top-left and bottom-right corners, fading out along the edges */
+.hero-code-card::before,
+.project-card::before,
+.category-card::before,
+.fz-card::before,
+.fz-egg-card::before,
+.terminal-window::before,
+.snake-window::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+        var(--edge-color) 8%, transparent 45%,
+        transparent 55%, var(--edge-color) 92%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
-.section-label-text {
-    font-family: var(--display);
-    font-size: 0.6875rem;
-    color: var(--cherry);
-    letter-spacing: 0.15em;
-    font-weight: 500;
+/* hero code window: the same two edge pieces, but they run around the border */
+@property --edge-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.hero-code-card::before {
+    background: conic-gradient(from var(--edge-angle),
+        transparent 0deg, var(--edge-color) 70deg, var(--edge-color) 100deg, transparent 130deg,
+        transparent 180deg, var(--edge-color) 250deg, var(--edge-color) 280deg, transparent 310deg);
+    animation: edge-run 6s linear infinite;
+}
+
+@keyframes edge-run {
+    to { --edge-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-code-card::before {
+        animation: none;
+        --edge-angle: 225deg;
+    }
+}
+
+/* these two keep a 1px border; don't paint the card colour under it, or it shows outside the edge */
+.hero-code-card,
+.project-card {
+    background-clip: padding-box;
 }
 
 .section-title {

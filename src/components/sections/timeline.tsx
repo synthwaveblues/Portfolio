@@ -93,10 +93,6 @@ export default function Timeline() {
   return (
     <section id="experience" className="timeline-section">
       <div className="container">
-        <div className="section-label">
-          <span className="section-label-slash">//</span>
-          <span className="section-label-text">BACKGROUND</span>
-        </div>
         <div className="section-title">Experience & Education</div>
 
         <div className="timeline-cols">

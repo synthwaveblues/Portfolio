@@ -11,10 +11,6 @@ export default function FunZone() {
   return (
     <section id="fun" className="fz-section">
       <div className="fz-inner">
-        <div className="section-label">
-          <span className="section-label-slash">//</span>
-          <span className="section-label-text">INTERACTIVE</span>
-        </div>
         <div className="section-title">Fun Zone</div>
 
         <div className="fz-grid">

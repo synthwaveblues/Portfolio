@@ -15,6 +15,28 @@ export interface EducationItem {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    company: 'Goodszilla Inc.',
+    role: 'Full-Stack Developer',
+    period: 'Jun 2026 – Present',
+    location: 'Remote (Toronto, Canada)',
+    points: [
+      'Develop and maintain the Node.js/TypeScript backend of a charitable-giving platform (MongoDB, AWS, Docker).',
+      'Build features across the React/Remix Shopify app and merchant dashboards.',
+      'Develop a Kotlin/Jetpack Compose Android app for payment terminals.',
+    ],
+  },
+  {
+    company: 'Słodkiewicz Gym & Fitness',
+    role: 'Full-Stack Developer (2-month contract)',
+    period: 'Apr 2026 – Jun 2026',
+    location: 'Poznań, Poland',
+    points: [
+      'Developed full-stack features for a gym management platform using NestJS, React and TypeScript within an Nx monorepo.',
+      'Designed relational databases with Prisma and PostgreSQL, with GraphQL APIs and JWT multi-role authentication.',
+      'Built scheduling modules with email notifications; containerized with Docker and deployed via GitHub Actions.',
+    ],
+  },
+  {
     company: 'Sysmo.pl',
     role: 'Backend Developer Intern',
     period: 'Jul 2025 – Sep 2025',
@@ -23,17 +45,6 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Contributed to commercial web apps using NestJS and PostgreSQL, focusing on modular architecture and scalable database design.',
       'Developed and extended RESTful API endpoints with strict DTO validation and TypeORM-managed migrations.',
       'Integrated external services and optimized DB queries to improve response times.',
-    ],
-  },
-  {
-    company: 'Poznan University of Technology',
-    role: 'Student Projects & Practices',
-    period: 'Oct 2022 – Present',
-    location: 'Poznań, Poland',
-    points: [
-      "Architected and deployed a microservices-based AI platform (Engineer's Thesis) with high availability through service isolation.",
-      'Collaborated in team and solo projects across diverse task types.',
-      'Developed software and hardware compatibility solutions.',
     ],
   },
 ];

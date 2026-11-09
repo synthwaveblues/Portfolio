@@ -1,6 +1,18 @@
+import {
+  siTypescript, siJavascript, siNodedotjs, siNestjs, siExpress, siGraphql, siStripe, siPaypal,
+  siReact, siRemix, siAstro, siTailwindcss, siShopify, siKotlin,
+  siPostgresql, siMongodb, siPrisma, siTypeorm, siDocker, siLinux,
+  siGit, siGithubactions, siJest, siSwagger, siNx, siTurborepo, siOpenjdk, siPython,
+} from 'simple-icons';
+
+export interface SkillIcon {
+  title: string;
+  path: string;
+}
+
 export interface Skill {
   name: string;
-  level: number;
+  icons: SkillIcon[];
 }
 
 export interface SkillGroup {
@@ -9,51 +21,59 @@ export interface SkillGroup {
   icon: string;
 }
 
+// Drawn locally: AWS isn't in simple-icons and microservices isn't a brand
+const cloudIcon: SkillIcon = {
+  title: 'Cloud',
+  path: 'M6.5 20a5.5 5.5 0 0 1-.9-10.93A7 7 0 0 1 19.2 8.3 5.85 5.85 0 0 1 18 20z',
+};
+const servicesIcon: SkillIcon = {
+  title: 'Services',
+  path: 'M2 2h8v8H2zm12 0h8v8h-8zM8 14h8v8H8zM10 5h4v2h-4zm-5 5h2v5H5zm12 0h2v5h-2zM5 15h3v2H5zm11 0h3v2h-3z',
+};
+
 export const TECH_STACK: SkillGroup[] = [
   {
-    category: 'Fullstack & Architecture',
+    category: 'Backend',
     icon: '{}',
     skills: [
-      {name: 'JavaScript & TypeScript', level: 90},
-      {name: 'Node.js', level: 87},
-      {name: 'Microservices & Monorepos', level: 80},
-      {name: 'HTML5 & CSS3', level: 80},
-      {name: 'Websockets', level: 65},
-      {name: 'System Security (JWT/ACID)', level: 70}
+      {name: 'TypeScript / JavaScript', icons: [siTypescript, siJavascript]},
+      {name: 'Node.js, NestJS & Express', icons: [siNodedotjs, siNestjs, siExpress]},
+      {name: 'REST, GraphQL & WebSockets', icons: [siGraphql]},
+      {name: 'Microservices', icons: [servicesIcon]},
+      {name: 'Stripe & PayPal', icons: [siStripe, siPaypal]},
     ],
   },
   {
-    category: 'Frameworks & Libraries',
-    icon: '⚙',
+    category: 'Frontend & Mobile',
+    icon: '◧',
     skills: [
-      {name: 'NestJS', level: 90},
-      {name: 'React', level: 78},
-      {name: 'Astro', level: 75},
-      {name: 'Express', level: 80},
-      {name: 'Bun & Hono', level: 70}
-    ]
+      {name: 'React & Remix', icons: [siReact, siRemix]},
+      {name: 'Astro', icons: [siAstro]},
+      {name: 'Tailwind', icons: [siTailwindcss]},
+      {name: 'Shopify Apps', icons: [siShopify]},
+      {name: 'Kotlin (Android)', icons: [siKotlin]},
+    ],
   },
   {
     category: 'Data & Cloud',
     icon: '◈',
     skills: [
-      {name: 'PostgreSQL', level: 82},
-      {name: 'TypeORM', level: 80},
-      {name: 'Prisma', level: 72},
-      {name: 'MongoDB', level: 65},
-      {name: 'AWS S3', level: 60},
+      {name: 'PostgreSQL & MongoDB', icons: [siPostgresql, siMongodb]},
+      {name: 'Prisma & TypeORM', icons: [siPrisma, siTypeorm]},
+      {name: 'AWS (EC2, S3)', icons: [cloudIcon]},
+      {name: 'Docker', icons: [siDocker]},
+      {name: 'Linux', icons: [siLinux]},
     ],
   },
   {
-    category: 'Tools & DevOps',
+    category: 'Tools & Testing',
     icon: '⬡',
     skills: [
-      {name: 'Docker', level: 80},
-      {name: 'GitHub Actions (CI/CD)', level: 70},
-      {name: 'Linux / Bash', level: 75},
-      {name: 'Git / GitHub', level: 88},
-      {name: 'Swagger / OpenAPI', level: 75},
-      {name: 'Jest', level: 60}
-    ]
-  }
+      {name: 'Git & GitHub Actions', icons: [siGit, siGithubactions]},
+      {name: 'Jest', icons: [siJest]},
+      {name: 'Swagger / OpenAPI', icons: [siSwagger]},
+      {name: 'Nx / Turborepo', icons: [siNx, siTurborepo]},
+      {name: 'Java & Python', icons: [siOpenjdk, siPython]},
+    ],
+  },
 ]

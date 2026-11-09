@@ -5,7 +5,6 @@ const CONTACT_ROWS = [
   {label: 'github', value: 'github.com/synthwaveblues', href: 'https://github.com/synthwaveblues'},
   {label: 'linkedin', value: 'linkedin.com/in/anton-shevchenko', href: 'https://www.linkedin.com/in/anton-shevchenko-8a4827357/'},
   {label: 'telegram', value: '@synthwaveblues', href: 'https://t.me/synthwaveblues'},
-  {label: 'instagram', value: '@synthwaveblues', href: 'https://instagram.com/synthwaveblues'},
 ] as const;
 
 const ASCII_ART = String.raw`                      __  .__                              ___.   .__
@@ -19,10 +18,6 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="fz-inner">
-        <div className="section-label">
-          <span className="section-label-slash">//</span>
-          <span className="section-label-text">CONTACT</span>
-        </div>
         <div className="section-title">Get in Touch</div>
 
         <div className="contact-grid">

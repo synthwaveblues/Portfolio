@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const PHRASES = ['Full-Stack Developer', 'NestJS Architect', 'AI Integrator', 'Backend Engineer'] as const;
+const PHRASES = ['Full-Stack Developer', 'Backend Engineer', 'React Developer'] as const;
 
 type WindowState = 'open' | 'closing' | 'closed';
 
@@ -85,7 +85,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-bio">
-          Building scalable microservices, AI-powered platforms, clean APIs and Fullstack solutions.
+          Full-stack developer building scalable backends, clean APIs and modern web and mobile apps.
         </div>
 
         <div className="hero-button">
@@ -132,13 +132,6 @@ export default function Hero() {
                 d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
             </svg>
           </a>
-          <a className="hero-social-link" href="https://instagram.com/synthwaveblues" target="_blank" rel="noreferrer"
-             aria-label="Instagram">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-          </a>
         </div>
       </div>
 
@@ -182,9 +175,9 @@ export default function Hero() {
         }<span className="ct-kw">const</span>{' '}<span className="ct-var">developer</span>{' = {\n'
         }{'  name: '}<span className="ct-str">{"\"Anton Shevchenko\""}</span>{',\n'
         }{'  stack: ['}<span className="ct-str">{"\"TypeScript\""}</span>{', '}<span
-          className="ct-str">{"\"NestJS\""}</span>{', '}<span className="ct-str">{"\"React\""}</span>{', '}<span
-          className="ct-str">{"\"PostgreSQL\""}</span>{'],\n'
-        }{'  thesis: '}<span className="ct-str">{"\"AI-Powered Exam Platform\""}</span>{',\n'
+          className="ct-str">{"\"Node.js\""}</span>{', '}<span className="ct-str">{"\"React\""}</span>{', '}<span
+          className="ct-str">{"\"Kotlin\""}</span>{'],\n'
+        }{'  currently: '}<span className="ct-str">{"\"Full-Stack Developer\""}</span>{',\n'
         }{'  passion: '}<span className="ct-str">{"\"systems that scale\""}</span>{',\n'
         }{'  status: '}<span className="ct-str">{"\"open_to_work ✓ \""}</span>{'\n'
         }{'};'}</pre>
