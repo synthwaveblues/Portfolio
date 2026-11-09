@@ -1,10 +1,12 @@
 .hero {
-    min-height: 100vh;
+    /* 64px taller than the screen: the Projects pixel edge reaches 64px up into the hero,
+       and this keeps it just below the fold on a fresh load */
+    min-height: calc(100vh + 64px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
-    padding: 140px 48px 80px;
+    padding: 140px 48px 150px;
     position: relative;
     gap: 40px;
 }
@@ -187,7 +189,8 @@
 }
 
 [data-theme="light"] .hero-code-card {
-    background: #2a2a35;
+    /* background-color, not the shorthand: that would reset background-clip and paint a dark rim outside the edge */
+    background-color: #2a2a35;
     border-color: transparent;
 }
 
@@ -243,7 +246,8 @@
 
 .hero-scroll-hint {
     position: absolute;
-    bottom: 28px;
+    /* sits above the 64px pixel edge of the Projects section */
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -275,7 +279,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 200px 20px 100px;
+        padding: 200px 20px 170px;
         gap: 32px;
     }
 
@@ -292,7 +296,7 @@
     }
 
     .hero-scroll-hint {
-        bottom: 60px;
+        bottom: 132px;
     }
 
     .hero-socials {

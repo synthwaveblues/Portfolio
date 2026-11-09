@@ -10,6 +10,7 @@
 @import './funzone.css';
 @import './games.css';
 @import './contact.css';
+@import './pixelEdges.css';
 
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
@@ -17,6 +18,8 @@
     --cherry-dim: #d42b4c1a;
     --cherry-glow: #d42b4c40;
     --edge-color: #6e1830;
+    /* the cherry that floods the screen on projects, experience and contact */
+    --band: #4a0f22;
 
     --bg: #0f0f18;
     --bg2: #1a1a28;
@@ -39,6 +42,7 @@
 
 [data-theme="light"] {
     --bg: #f2e0e5;
+    --band: #a01b3d;
     --bg2: #eacdd5;
     --bg3: #ddbac4;
     --bg4: #cfa7b3;
@@ -100,6 +104,7 @@ button {
 img { max-width: 100%; display: block; }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
+/* native scrollbar, for touch screens and no-JS; with a mouse, src/scripts/scrollbar.ts swaps in a floating one */
 ::-webkit-scrollbar { width: 14px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -117,7 +122,157 @@ img { max-width: 100%; display: block; }
     }
 }
 
+/* the floating scrollbar takes no column of its own, so sections run to the right edge */
+html.custom-scrollbar {
+    scrollbar-width: none;
+}
+
+html.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    width: 14px;
+}
+
+.scrollbar-hidden {
+    display: none;
+}
+
+.scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    width: 8px;
+    border-radius: 4px;
+    background: rgba(212, 43, 76, 0.7);
+    /* a thin dark rim keeps it visible over the cherry sections too */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    transition: width 0.15s, background 0.15s;
+}
+
+.scrollbar:hover .scrollbar-thumb,
+.scrollbar-dragging .scrollbar-thumb {
+    width: 10px;
+    background: var(--cherry);
+}
+
 /* ── Shared ───────────────────────────────────────────────────── */
+/* sections alternate: hero default, projects cherry, stack default, experience cherry, fun default, contact cherry.
+   The cherry sections bring their own light-on-cherry palette; set on the section itself,
+   it wins over the theme values inherited from <html>. */
+.projects-section,
+.timeline-section,
+.contact-section {
+    --band: #4a0f22;
+    --bg: #2a0712;
+    --bg2: #34091a;
+    --bg3: #3f0c20;
+    --bg4: #4d1028;
+    --text: #fff1f4;
+    --text-dim: #e7b8c3;
+    --text-muted: #c48a99;
+    --cherry: #ff6b88;
+    --border: rgba(255, 170, 190, 0.2);
+    --border2: rgba(255, 170, 190, 0.36);
+    --edge-color: #16030a;
+    position: relative;
+    background: var(--band);
+    color: var(--text);
+}
+
+/* light theme: a lighter cherry, still with white text */
+[data-theme="light"] .projects-section,
+[data-theme="light"] .timeline-section,
+[data-theme="light"] .contact-section {
+    --band: #a01b3d;
+    --bg: #6e1028;
+    --bg2: #821430;
+    --bg3: #8d1835;
+    --bg4: #a01b3d;
+    --text: #ffffff;
+    --text-dim: #fde3ea;
+    --text-muted: #f6c4d0;
+    --cherry: #ffd2dc;
+    --border: rgba(255, 255, 255, 0.25);
+    --border2: rgba(255, 255, 255, 0.42);
+    --edge-color: #3f0915;
+}
+
+/* pixel shading: where a cherry section meets a normal one, the cherry dissolves into small pixels on a 4px grid,
+   solid blocks against the section shrinking to 3px, 2px and 1px dots away from it, like the ASCII ramp @ # * + - .
+   The strip is a mask, so it takes the band colour in either theme. It's 2560px wide and comes in 10 frames
+   (pixelEdges.css, made by scripts/pixel-edges.mjs), each re-rolling about an eighth of the pixels; the edges step
+   back and forth through them so the fade shimmers. Closing edges show the strip shifted by half its width so
+   they don't mirror the opening ones. It's inlined in the CSS so it paints with the first frame. */
+.projects-section::before,
+.timeline-section::before,
+.contact-section::before,
+.projects-section::after,
+.timeline-section::after {
+    --edge: var(--edge-0);
+    --edge-x: 0px;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: var(--band);
+    -webkit-mask: var(--edge) repeat-x var(--edge-x) 100% / var(--edge-w) 64px;
+    mask: var(--edge) repeat-x var(--edge-x) 100% / var(--edge-w) 64px;
+    pointer-events: none;
+    animation: edge-shimmer 1.6s linear infinite alternate;
+}
+
+/* 1px overlap so no hairline shows between the edge and the section */
+.projects-section::before,
+.timeline-section::before,
+.contact-section::before {
+    bottom: calc(100% - 1px);
+}
+
+/* the closing edge is the strip shifted by half its width, flipped so it dissolves downward */
+.projects-section::after,
+.timeline-section::after {
+    --edge-x: calc(var(--edge-w) / -2);
+    top: calc(100% - 1px);
+    transform: scaleY(-1);
+    /* out of step with the opening edges */
+    animation-delay: -0.8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .projects-section::before,
+    .timeline-section::before,
+    .contact-section::before,
+    .projects-section::after,
+    .timeline-section::after {
+        animation: none;
+    }
+}
+
+/* on the light page the outer pixels read too strong: keep the ones touching the section solid
+   and fade the rest out by layering a gradient into the mask */
+[data-theme="light"] .projects-section::before,
+[data-theme="light"] .timeline-section::before,
+[data-theme="light"] .contact-section::before,
+[data-theme="light"] .projects-section::after,
+[data-theme="light"] .timeline-section::after {
+    -webkit-mask:
+        var(--edge) repeat-x var(--edge-x) 100% / var(--edge-w) 64px,
+        linear-gradient(to top, #000 20%, rgba(0, 0, 0, 0.3));
+    -webkit-mask-composite: source-in;
+    mask:
+        var(--edge) repeat-x var(--edge-x) 100% / var(--edge-w) 64px,
+        linear-gradient(to top, #000 20%, rgba(0, 0, 0, 0.3));
+    mask-composite: intersect;
+}
+
 .hero-code-card,
 .project-card,
 .terminal-window,
@@ -156,10 +311,22 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-code-card::before {
+    /* thicker than the other windows' edges, and over the 1px border so it sits flush with the outline */
+    inset: -1px;
+    padding: 5px;
     background: conic-gradient(from var(--edge-angle),
         transparent 0deg, var(--edge-color) 70deg, var(--edge-color) 100deg, transparent 130deg,
         transparent 180deg, var(--edge-color) 250deg, var(--edge-color) 280deg, transparent 310deg);
     animation: edge-run 6s linear infinite;
+}
+
+/* the code window stays dark on the light page, where the dark cherry edge disappears against it:
+   a brighter cherry with longer solid pieces */
+[data-theme="light"] .hero-code-card::before {
+    --edge-color: #e0294f;
+    background: conic-gradient(from var(--edge-angle),
+        transparent 0deg, var(--edge-color) 35deg, var(--edge-color) 125deg, transparent 155deg,
+        transparent 180deg, var(--edge-color) 215deg, var(--edge-color) 305deg, transparent 335deg);
 }
 
 @keyframes edge-run {

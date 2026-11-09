@@ -49,6 +49,8 @@ const ogImage = new URL('/og.png', Astro.url).href;
       if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
     })();
     document.documentElement.classList.add('preload');
+    // hide the native scrollbar before first paint so the page doesn't shift when the floating one loads
+    if (window.matchMedia('(pointer: fine)').matches) document.documentElement.classList.add('custom-scrollbar');
     window.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(function () {
         document.documentElement.classList.remove('preload');
@@ -59,5 +61,8 @@ const ogImage = new URL('/og.png', Astro.url).href;
 <body>
 <Nav client:load/>
 <slot/>
+<script>
+  import '../scripts/scrollbar';
+</script>
 </body>
 </html>
