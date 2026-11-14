@@ -1,6 +1,5 @@
 ---
 import Nav from '../components/ui/Nav';
-// self-hosted fonts: no request to Google before the page can paint
 import '@fontsource-variable/inter/wght.css';
 import '@fontsource-variable/space-grotesk/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
@@ -34,7 +33,6 @@ const ogImage = new URL('/og.png', Astro.url).href;
   <meta name="description" content={description}/>
   <link rel="canonical" href={canonical}/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-  <!-- the two faces the hero uses, fetched alongside the CSS instead of after it -->
   <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin/>
   <link rel="preload" href={spaceGroteskLatin} as="font" type="font/woff2" crossorigin/>
 
@@ -58,7 +56,7 @@ const ogImage = new URL('/og.png', Astro.url).href;
       if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
     })();
     document.documentElement.classList.add('preload');
-    // hide the native scrollbar before first paint so the page doesn't shift when the floating one loads
+    // hide native scrollbar early
     if (window.matchMedia('(pointer: fine)').matches) document.documentElement.classList.add('custom-scrollbar');
     window.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(function () {

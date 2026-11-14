@@ -19,7 +19,7 @@
     transition: transform var(--deal-duration, 0.65s) cubic-bezier(0.2, 0.9, 0.25, 1) var(--deal-delay, 0ms);
 }
 
-/* fanned pile on the left until the section scrolls into view */
+/* stacked pile */
 .category-card-stacked {
     transform: translate(var(--deal-x), var(--deal-y));
     transition: none;
@@ -78,7 +78,6 @@
     opacity: 1;
 }
 
-/* the strips would cut the titles in half, so those wait until their card slides out */
 .category-card-title {
     transition: opacity 0.4s ease var(--deal-delay, 0ms);
 }

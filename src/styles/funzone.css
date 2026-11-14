@@ -198,7 +198,6 @@
 }
 
 .spotify-title {
-    /* taller hit area (24px) for touch; the negative margin keeps the layout where it was */
     display: inline-block;
     padding-block: 3px;
     margin-block: -3px;
@@ -216,7 +215,6 @@
 .spotify-artist {
     font-size: 0.75rem;
     color: var(--text-dim);
-    /* room for the links' taller hit areas, which overflow: hidden would otherwise clip */
     padding-block: 4px;
     margin-block: -4px 8px;
     white-space: nowrap;

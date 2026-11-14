@@ -60,7 +60,6 @@ export default function Hero() {
       <div className="hero-dot-grid"/>
       <div className="hero-glow"/>
 
-      { /* LEFT SIDE: fades in with CSS (hero.css), so it shows before React loads */}
       <div className="hero-content">
         <div className="hero-name">
           <span className="hero-name-first">Anton</span>

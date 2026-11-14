@@ -16,7 +16,6 @@ export interface Project {
   year: string;
   github: string;
   videoUrl: string;
-  // file name in assets/projects without .png; scripts/project-images.mjs makes the WebP sizes
   image?: string;
 }
 

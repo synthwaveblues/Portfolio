@@ -9,7 +9,6 @@ export default defineConfig({
   site: SITE_URL,
   integrations: [react(), sitemap(), csp()],
   output: 'static',
-  // one page: put the CSS in the HTML so it doesn't block the first paint behind a second request
   build: {
     inlineStylesheets: 'always',
   },

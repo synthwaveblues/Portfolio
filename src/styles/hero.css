@@ -1,6 +1,5 @@
 .hero {
-    /* 64px taller than the screen: the Projects pixel edge reaches 64px up into the hero,
-       and this keeps it just below the fold on a fresh load */
+    /* edge stays below fold */
     min-height: calc(100vh + 64px);
     display: flex;
     align-items: center;
@@ -51,8 +50,6 @@
     content: '';
     position: absolute;
     inset: 0;
-    /* grain: the noise is a mask over white, not a background image. Chrome counts a background image this
-       big as the page's largest content and waits for it to "load", which pushed LCP back by ~2s */
     background: #fff;
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -71,9 +68,6 @@
     transition: all 0.8s ease;
 }
 
-/* entrance: plain CSS so the hero is in the first paint instead of waiting for React to hydrate.
-   'backwards' only holds the start frame before it runs; once done it lets go, so the code window's
-   inline close/reopen styles still apply */
 @keyframes hero-in {
     from {
         opacity: 0;
@@ -215,7 +209,7 @@
 }
 
 [data-theme="light"] .hero-code-card {
-    /* background-color, not the shorthand: that would reset background-clip and paint a dark rim outside the edge */
+    /* keeps background-clip */
     background-color: #2a2a35;
     border-color: transparent;
 }
@@ -272,7 +266,6 @@
 
 .hero-scroll-hint {
     position: absolute;
-    /* sits above the 64px pixel edge of the Projects section */
     bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
@@ -292,7 +285,7 @@
     background: linear-gradient(to bottom, var(--border2), transparent);
 }
 
-/* ── Narrow laptop / tablet: no room beside the text, so hide the card ── */
+/* ── Narrow laptop / tablet ─────────────────────────────────── */
 @media (max-width: 1299px) {
     .hero-code-card {
         display: none;

@@ -3,7 +3,7 @@ import type {CSSProperties} from 'react';
 import {TECH_STACK} from '../../data/techstack';
 import type {SkillGroup} from '../../data/techstack';
 
-// idle: server render, stacked: fanned pile on the left, dealt: cards in place
+// deal animation phases
 type DealPhase = 'idle' | 'stacked' | 'dealt';
 
 interface DealOffset {
@@ -22,14 +22,14 @@ interface CategoryCardProps {
 
 const DEAL_STAGGER = 220;
 const DEAL_DURATION = 1000;
-// gap between cards when their logos and underlines play, left to right
+// reveal delay per card
 const REVEAL_STAGGER = 200;
-// how much of each card behind peeks out on the left of the one above it
+// visible part per card
 const STACK_PEEK = 70;
 
 const LAST_CARD = TECH_STACK.length - 1;
 
-// dealt from the top of the pile: the last card leaves first, the first card never moves
+// last card deals first
 function dealDelayFor(cardIndex: number): number {
   return (LAST_CARD - cardIndex) * DEAL_STAGGER;
 }
@@ -39,7 +39,6 @@ function phaseClass(base: string, phase: DealPhase): string {
 }
 
 function CategoryCard({category, cardIndex, phase, offset, dealt}: CategoryCardProps) {
-  // once every card has landed, logos and underlines play from the first card to the last
   const allLanded = (LAST_CARD - 1) * DEAL_STAGGER + DEAL_DURATION;
   const landDelay = !dealt ? cardIndex * 80 : allLanded + cardIndex * REVEAL_STAGGER;
 
@@ -85,7 +84,7 @@ export default function TechStack() {
   const [offsets, setOffsets] = useState<DealOffset[]>([]);
   const [dealEnabled, setDealEnabled] = useState<boolean>(false);
 
-  // measure each card against the first one, then fan them out from there by STACK_PEEK
+  // measure and fan out
   useLayoutEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
@@ -94,7 +93,6 @@ export default function TechStack() {
     const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
     if (reduceMotion || columns < 2) return;
 
-    // offset* ignores transforms, so re-measuring while piled stays correct
     const measure = () => {
       const cards = [...grid.querySelectorAll<HTMLElement>(':scope > .category-card')];
       const first = cards[0];

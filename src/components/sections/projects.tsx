@@ -75,7 +75,7 @@ function VideoPanel({project, onClose}: VideoPanelProps) {
   );
 }
 
-// made by scripts/project-images.mjs as public/projects/<image>-<width>.webp
+// thumbnail widths
 const THUMB_WIDTHS = [480, 800, 1200];
 
 function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
@@ -89,16 +89,16 @@ function ProjectCard({project, isOpen, onToggle}: ProjectCardProps) {
         <div className="project-thumbnail">
           {project.image
             ? <img
-                src={`/projects/${project.image}-800.webp`}
-                srcSet={THUMB_WIDTHS.map(w => `/projects/${project.image}-${w}.webp ${w}w`).join(', ')}
-                sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1024px) 50vw, 420px"
-                width={800}
-                height={450}
-                loading="lazy"
-                decoding="async"
-                alt={project.name}
-                className="project-thumbnail-img"
-              />
+              src={`/projects/${project.image}-800.webp`}
+              srcSet={THUMB_WIDTHS.map(w => `/projects/${project.image}-${w}.webp ${w}w`).join(', ')}
+              sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1024px) 50vw, 420px"
+              width={800}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              alt={project.name}
+              className="project-thumbnail-img"
+            />
             : <span className="project-thumbnail-placeholder">no preview</span>
           }
         </div>
@@ -128,13 +128,11 @@ function getCols(): number {
 }
 
 export default function Projects() {
-  const [openId, setOpenId]       = useState<string | null>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
   const [displayId, setDisplayId] = useState<string | null>(null);
-  // starts at 3 like the server-rendered HTML, then switches to the real count once mounted;
-  // reading the window here would make the first render differ from the HTML and break hydration
-  const [cols, setCols]           = useState<number>(3);
-  const demoRef  = useRef<HTMLDivElement>(null);
-  const colsRef  = useRef<number>(cols);
+  const [cols, setCols] = useState<number>(3);
+  const demoRef = useRef<HTMLDivElement>(null);
+  const colsRef = useRef<number>(cols);
 
   useEffect(() => {
     const update = () => {
@@ -151,7 +149,7 @@ export default function Projects() {
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Callback ref — attaches to whichever panel wrap is currently active
+  // active panel ref
   const panelRef = useCallback((el: HTMLDivElement | null) => {
     demoRef.current = el;
   }, []);
@@ -198,7 +196,7 @@ export default function Projects() {
     }
     const wasOpen = !!openId;
     if (colsRef.current === 3) {
-      // Panel always in DOM for 3-cols — set both at once
+      // panel always mounted
       setOpenId(id);
       setDisplayId(id);
       if (!wasOpen) scrollToPanel();
@@ -221,8 +219,8 @@ export default function Projects() {
   };
 
   const displayProject = PROJECTS.find(p => p.id === displayId);
-  const displayIndex   = displayId ? PROJECTS.findIndex(p => p.id === displayId) : -1;
-  const openRowIdx     = displayIndex >= 0 ? Math.floor(displayIndex / cols) : -1;
+  const displayIndex = displayId ? PROJECTS.findIndex(p => p.id === displayId) : -1;
+  const openRowIdx = displayIndex >= 0 ? Math.floor(displayIndex / cols) : -1;
 
   const renderGrid = () => {
     if (cols === 3) {
@@ -236,7 +234,7 @@ export default function Projects() {
       items.push(
         <ProjectCard key={p.id} project={p} isOpen={openId === p.id} onToggle={() => toggle(p.id)}/>
       );
-      const rowIdx      = Math.floor(i / cols);
+      const rowIdx = Math.floor(i / cols);
       const isLastInRow = (i + 1) % cols === 0 || i === PROJECTS.length - 1;
       if (isLastInRow) {
         const isThisOpen = rowIdx === openRowIdx && !!openId;
@@ -274,7 +272,8 @@ export default function Projects() {
         )}
         <div className="projects-footer">
           <span className="projects-footer-text">..and even more on my </span>
-          <a className="projects-footer-link" href="https://github.com/synthwaveblues" target="_blank" rel="noreferrer">GitHub</a>
+          <a className="projects-footer-link" href="https://github.com/synthwaveblues" target="_blank"
+             rel="noreferrer">GitHub</a>
           <span className="projects-footer-text">:)</span>
         </div>
       </div>

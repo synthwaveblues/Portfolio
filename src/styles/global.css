@@ -15,7 +15,7 @@
     --cherry-dim: #d42b4c1a;
     --cherry-glow: #d42b4c40;
     --edge-color: #6e1830;
-    /* the cherry that floods the screen on projects, experience and contact */
+    /* cherry band */
     --band: #4a0f22;
 
     --bg: #0f0f18;
@@ -101,7 +101,7 @@ button {
 img { max-width: 100%; display: block; }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
-/* native scrollbar, for touch screens and no-JS; with a mouse, src/scripts/scrollbar.ts swaps in a floating one */
+/* native scrollbar */
 ::-webkit-scrollbar { width: 14px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -119,7 +119,7 @@ img { max-width: 100%; display: block; }
     }
 }
 
-/* the floating scrollbar takes no column of its own, so sections run to the right edge */
+/* floating scrollbar */
 html.custom-scrollbar {
     scrollbar-width: none;
 }
@@ -148,7 +148,6 @@ html.custom-scrollbar::-webkit-scrollbar {
     width: 8px;
     border-radius: 4px;
     background: rgba(212, 43, 76, 0.7);
-    /* a thin dark rim keeps it visible over the cherry sections too */
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
     transition: width 0.15s, background 0.15s;
 }
@@ -160,9 +159,7 @@ html.custom-scrollbar::-webkit-scrollbar {
 }
 
 /* ── Shared ───────────────────────────────────────────────────── */
-/* sections alternate: hero default, projects cherry, stack default, experience cherry, fun default, contact cherry.
-   The cherry sections bring their own light-on-cherry palette; set on the section itself,
-   it wins over the theme values inherited from <html>. */
+/* cherry sections */
 .projects-section,
 .timeline-section,
 .contact-section {
@@ -183,7 +180,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     color: var(--text);
 }
 
-/* light theme: a lighter cherry, still with white text */
+/* light theme */
 [data-theme="light"] .projects-section,
 [data-theme="light"] .timeline-section,
 [data-theme="light"] .contact-section {
@@ -201,12 +198,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     --edge-color: #3f0915;
 }
 
-/* pixel shading: where a cherry section meets a normal one, the cherry dissolves into small pixels on a 4px grid,
-   solid blocks against the section shrinking to 3px, 2px and 1px dots away from it, like the ASCII ramp @ # * + - .
-   The strip is a mask, so it takes the band colour in either theme. It's 2560px wide and comes in 10 frames
-   (pixelEdges.css, made by scripts/pixel-edges.mjs), each re-rolling about an eighth of the pixels; the edges step
-   back and forth through them so the fade shimmers. Closing edges show the strip shifted by half its width so
-   they don't mirror the opening ones. It's inlined in the CSS so it paints with the first frame. */
+/* pixel-fade edges */
 .projects-section::before,
 .timeline-section::before,
 .contact-section::before,
@@ -226,20 +218,18 @@ html.custom-scrollbar::-webkit-scrollbar {
     animation: edge-shimmer 1.6s linear infinite alternate;
 }
 
-/* 1px overlap so no hairline shows between the edge and the section */
 .projects-section::before,
 .timeline-section::before,
 .contact-section::before {
     bottom: calc(100% - 1px);
 }
 
-/* the closing edge is the strip shifted by half its width, flipped so it dissolves downward */
+/* closing edge */
 .projects-section::after,
 .timeline-section::after {
     --edge-x: calc(var(--edge-w) / -2);
     top: calc(100% - 1px);
     transform: scaleY(-1);
-    /* out of step with the opening edges */
     animation-delay: -0.8s;
 }
 
@@ -253,8 +243,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     }
 }
 
-/* on the light page the outer pixels read too strong: keep the ones touching the section solid
-   and fade the rest out by layering a gradient into the mask */
+/* light theme fade */
 [data-theme="light"] .projects-section::before,
 [data-theme="light"] .timeline-section::before,
 [data-theme="light"] .contact-section::before,
@@ -277,7 +266,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     position: relative;
 }
 
-/* window edge: solid black cherry at the top-left and bottom-right corners, fading out along the edges */
+/* window edges */
 .hero-code-card::before,
 .project-card::before,
 .category-card::before,
@@ -300,7 +289,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     pointer-events: none;
 }
 
-/* hero code window: the same two edge pieces, but they run around the border */
+/* hero window running edge */
 @property --edge-angle {
     syntax: '<angle>';
     initial-value: 0deg;
@@ -308,7 +297,6 @@ html.custom-scrollbar::-webkit-scrollbar {
 }
 
 .hero-code-card::before {
-    /* thicker than the other windows' edges, and over the 1px border so it sits flush with the outline */
     inset: -1px;
     padding: 5px;
     background: conic-gradient(from var(--edge-angle),
@@ -317,8 +305,7 @@ html.custom-scrollbar::-webkit-scrollbar {
     animation: edge-run 6s linear infinite;
 }
 
-/* the code window stays dark on the light page, where the dark cherry edge disappears against it:
-   a brighter cherry with longer solid pieces */
+/* light theme */
 [data-theme="light"] .hero-code-card::before {
     --edge-color: #e0294f;
     background: conic-gradient(from var(--edge-angle),
@@ -337,7 +324,6 @@ html.custom-scrollbar::-webkit-scrollbar {
     }
 }
 
-/* these two keep a 1px border; don't paint the card colour under it, or it shows outside the edge */
 .hero-code-card,
 .project-card {
     background-clip: padding-box;

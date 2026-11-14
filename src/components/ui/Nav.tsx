@@ -84,18 +84,18 @@ export default function Nav() {
       </div>
       <div className="nav-right">
         <button
-        ref={toggleRef}
-        className="theme-toggle"
-        onClick={() => applyTheme(!light)}
-        aria-label="Toggle theme"
-        suppressHydrationWarning
-      >
-        <div className="theme-toggle-track">
-          <span>☾</span>
-          <span>☀</span>
-        </div>
-        <div className="theme-toggle-thumb"/>
-      </button>
+          ref={toggleRef}
+          className="theme-toggle"
+          onClick={() => applyTheme(!light)}
+          aria-label="Toggle theme"
+          suppressHydrationWarning
+        >
+          <div className="theme-toggle-track">
+            <span>☾</span>
+            <span>☀</span>
+          </div>
+          <div className="theme-toggle-thumb"/>
+        </button>
       </div>
     </nav>
   );

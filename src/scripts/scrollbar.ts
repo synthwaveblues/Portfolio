@@ -1,6 +1,4 @@
-// A slim scrollbar that floats over the page instead of the browser's own, which reserves a column on the right
-// that no section can paint behind (so the cherry sections stopped short of the edge). Drag the thumb, or click
-// the track to jump there. Touch screens keep their own overlay scrolling, so it's only added for mouse pointers.
+// floating scrollbar (mouse only)
 
 const MIN_THUMB = 48;
 
@@ -40,7 +38,6 @@ function initScrollbar() {
     if (!frame) frame = requestAnimationFrame(update);
   };
 
-  // pixels of thumb movement → pixels of page scroll
   const ratio = () => maxScroll() / (track.clientHeight - thumbHeight);
 
   thumb.addEventListener('pointerdown', e => {
@@ -67,7 +64,7 @@ function initScrollbar() {
   thumb.addEventListener('pointerup', endDrag);
   thumb.addEventListener('pointercancel', endDrag);
 
-  // clicking the track centres the thumb on that point
+  // track click jumps
   track.addEventListener('pointerdown', e => {
     const rect = track.getBoundingClientRect();
     const target = (e.clientY - rect.top - thumbHeight / 2) * ratio();
@@ -77,7 +74,6 @@ function initScrollbar() {
   update();
   window.addEventListener('scroll', schedule, {passive: true});
   window.addEventListener('resize', schedule);
-  // the page grows as islands hydrate and images load
   new ResizeObserver(schedule).observe(document.body);
 }
 

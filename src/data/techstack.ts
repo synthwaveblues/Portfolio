@@ -21,7 +21,7 @@ export interface SkillGroup {
   icon: string;
 }
 
-// Drawn locally: AWS isn't in simple-icons and microservices isn't a brand
+// custom icons
 const cloudIcon: SkillIcon = {
   title: 'Cloud',
   path: 'M6.5 20a5.5 5.5 0 0 1-.9-10.93A7 7 0 0 1 19.2 8.3 5.85 5.85 0 0 1 18 20z',
