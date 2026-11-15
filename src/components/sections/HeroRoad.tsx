@@ -76,7 +76,7 @@ export default function HeroRoad() {
     let cw = 7.2, cols = 0, rows = 0;
     let chars: string[] = [], tints: string[] = [];
     let travel = 0, steer = 0, steerTo = 0, speed = 1, boost = false;
-    let sky = new Float32Array(0), floor = 0;
+    let sky = new Float32Array(0), floor = 0, fadeFrom = 0, fadeSpan = 0;
     let raf = 0, last = 0, visible = true, ready = false;
 
     const resize = () => {
@@ -101,9 +101,12 @@ export default function HeroRoad() {
     const build = () => {
       chars.fill(' ');
       const narrow = cols * cw < 769;
-      const hy = narrow ? Math.max(Math.floor(rows * 0.6), floor) : Math.floor(rows * 0.58), cx = cols / 2, aspect = LINE / cw;
+      const hy = narrow ? Math.max(Math.floor(rows * 0.45), floor - 10) : Math.floor(rows * 0.58), cx = cols / 2, aspect = LINE / cw;
       const R = narrow ? 0 : rows * 0.22, sunY = hy - R * 0.35, depth = (rows - hy) * 0.75;
       const lane = narrow ? cw / 1600 : 1 / cols;
+      const freq = narrow ? 4 : 3;
+      fadeFrom = hy;
+      fadeSpan = narrow ? (rows - hy) * 0.6 : 0;
 
       // mountain heights
       const ridges = new Float32Array(cols + 1);
@@ -166,8 +169,8 @@ export default function HeroRoad() {
         const d0 = y - hy + 0.6, z0 = depth / d0, z1 = depth / (d0 + 1);
         const b = (y - hy) / (rows - hy);
         const shade = pal.grid[Math.min(11, Math.floor(1 + b * 11))];
-        const rowDense = (z0 - z1) * 3 > 0.8;
-        const rowLine = Math.floor(z0 * 3 + travel * 3) !== Math.floor(z1 * 3 + travel * 3);
+        const rowDense = (z0 - z1) * freq > 0.8;
+        const rowLine = Math.floor((z0 + travel) * freq) !== Math.floor((z1 + travel) * freq);
         for (let x = 0; x < cols; x++) {
           const k = y * cols + x;
           const w0 = (x - cx) * lane * z0 * 14 + steer;
@@ -197,6 +200,7 @@ export default function HeroRoad() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let y = 0; y < rows; y++) {
+        ctx.globalAlpha = fadeSpan && y >= fadeFrom ? Math.max(0.05, Math.min(1, ((y - fadeFrom) / fadeSpan) ** 1.5)) : 1;
         let run = '', tint = '', x0 = 0;
         const flush = () => {
           if (!run) return;
