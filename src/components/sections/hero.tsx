@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import HeroRoad from './HeroRoad';
 
 const PHRASES = ['Full-Stack Developer', 'Backend Engineer', 'React Developer'] as const;
 
@@ -10,18 +11,6 @@ export default function Hero() {
   const [phraseIdx, setPhraseIdx] = useState<number>(0);
   const [windowState, setWindowState] = useState<WindowState>('open');
   const [reopening, setReopening] = useState<boolean>(false);
-  const [scrollHintOpacity, setScrollHintOpacity] = useState<number>(1);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const hero = document.querySelector('.hero') as HTMLElement | null;
-      if (!hero) return;
-      const ratio = Math.min(window.scrollY / hero.offsetHeight, 1);
-      setScrollHintOpacity(1 - ratio);
-    };
-    window.addEventListener('scroll', onScroll, {passive: true});
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const handleRedDot = () => {
     if (windowState !== 'open') return;
@@ -57,7 +46,7 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-dot-grid"/>
+      <HeroRoad/>
       <div className="hero-glow"/>
 
       <div className="hero-content">
@@ -168,12 +157,6 @@ export default function Hero() {
         }{'  passion: '}<span className="ct-str">{"\"systems that scale\""}</span>{',\n'
         }{'  status: '}<span className="ct-str">{"\"open_to_work ✓ \""}</span>{'\n'
         }{'};'}</pre>
-      </div>
-
-      {/* scroll hint */}
-      <div className="hero-scroll-hint" style={{opacity: scrollHintOpacity}}>
-        <span>SCROLL</span>
-        <div className="hero-scroll-line"/>
       </div>
     </section>
   )
