@@ -76,7 +76,7 @@ export default function HeroRoad() {
     let cw = 7.2, cols = 0, rows = 0;
     let chars: string[] = [], tints: string[] = [];
     let travel = 0, steer = 0, steerTo = 0, speed = 1, boost = false;
-    let sky = new Float32Array(0);
+    let sky = new Float32Array(0), floor = 0;
     let raf = 0, last = 0, visible = true, ready = false;
 
     const resize = () => {
@@ -93,21 +93,23 @@ export default function HeroRoad() {
       chars = new Array(cols * rows);
       tints = new Array(cols * rows);
       sky = new Float32Array(cols * rows);
+      const socials = hero.querySelector('.hero-socials');
+      floor = socials ? Math.ceil((socials.getBoundingClientRect().bottom - hero.getBoundingClientRect().top) / LINE) + 4 : 0;
     };
 
     // build frame
     const build = () => {
       chars.fill(' ');
       const narrow = cols * cw < 769;
-      const hy = Math.floor(rows * (narrow ? 0.7 : 0.58)), cx = cols / 2, aspect = LINE / cw;
+      const hy = narrow ? Math.max(Math.floor(rows * 0.6), floor) : Math.floor(rows * 0.58), cx = cols / 2, aspect = LINE / cw;
       const R = narrow ? 0 : rows * 0.22, sunY = hy - R * 0.35, depth = (rows - hy) * 0.75;
       const lane = narrow ? cw / 1600 : 1 / cols;
 
       // mountain heights
       const ridges = new Float32Array(cols + 1);
       for (let x = 0; x <= cols; x++) {
-        const u = narrow ? (x * cw) / 600 : x / cols, peak = narrow ? 0.08 : 0.1;
-        ridges[x] = hy - 1 - (noise(u * 7 + steer * 0.15) ** 2 * rows * peak + noise(u * 23 + steer * 0.4 + 9) * rows * peak * 0.25);
+        const u = x / cols;
+        ridges[x] = narrow ? hy : hy - 1 - (noise(u * 7 + steer * 0.15) ** 2 * rows * 0.1 + noise(u * 23 + steer * 0.4 + 9) * rows * 0.025);
       }
 
       // cloud density
@@ -171,7 +173,7 @@ export default function HeroRoad() {
           const w0 = (x - cx) * lane * z0 * 14 + steer;
           const w1 = (x + 1 - cx) * lane * z0 * 14 + steer;
           const colDense = w1 - w0 > 0.6;
-          if (y === hy && !narrow) {
+          if (y === hy) {
             chars[k] = '_';
             tints[k] = pal.ridge;
           } else if (rowDense && colDense) {
@@ -248,9 +250,11 @@ export default function HeroRoad() {
 
     // input
     const onMove = (e: PointerEvent) => {
+      if (innerWidth < 769) return;
       steerTo = (e.clientX / innerWidth - 0.5) * 3;
     };
     const onDown = (e: PointerEvent) => {
+      if (innerWidth < 769) return;
       if (!(e.target as Element).closest('a, button, .hero-code-card')) boost = true;
     };
     const onUp = () => {
